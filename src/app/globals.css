@@ -126,3 +126,13 @@ body {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: none; }
 }
+
+/* Hero live chat */
+.msg-in { padding-top: 10px; animation: msgIn 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); max-height: 0; padding-top: 0; }
+  to { opacity: 1; transform: none; max-height: 180px; padding-top: 10px; }
+}
+.chat-head { animation: fadeUp 0.45s ease-out both; }
+.step-on { background: color-mix(in srgb, var(--accent) 14%, white); }
+.chip-on { outline: 2px solid var(--color-pi); outline-offset: 3px; box-shadow: 0 0 0 8px rgb(0 186 242 / 0.15), 0 8px 24px rgba(0, 41, 112, 0.2); }
