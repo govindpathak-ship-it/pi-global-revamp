@@ -1,0 +1,340 @@
+/* eslint-disable @next/next/no-img-element */
+import { Header } from "@/components/Header";
+import { ContactButton, ContactProvider } from "@/components/Contact";
+import { RevealObserver } from "@/components/Reveal";
+import { Counter } from "@/components/Counter";
+import { IndustryTabs } from "@/components/IndustryTabs";
+import { AgentTabs } from "@/components/AgentTabs";
+import { HeroConsole } from "@/components/HeroConsole";
+import { Pixels } from "@/components/Pixels";
+import { PiLogo } from "@/components/PiLogo";
+import { ArrowRight, ArrowUpRight, Bolt, Layers, Shield, Social } from "@/components/icons";
+import { asset } from "@/lib/asset";
+import { footerLinks, hero, khimjiCase, logos, outcomes, paytmCase, segments, socials } from "@/lib/content";
+
+function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+  return (
+    <p className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ring-1 ${dark ? "bg-white/5 text-pi ring-white/15" : "bg-pi/10 text-pi-700 ring-pi/25"}`}>
+      <span className="h-1.5 w-1.5 rounded-full bg-current" />
+      {children}
+    </p>
+  );
+}
+
+export default function Home() {
+  return (
+    <ContactProvider>
+      <RevealObserver />
+      <Header />
+      <main id="main">
+        {/* HERO */}
+        <section id="top" className="relative isolate overflow-hidden bg-ink pt-32 pb-24 text-white sm:pt-40 lg:pb-32">
+          <Pixels className="opacity-70 [mask-image:radial-gradient(ellipse_at_70%_30%,#000_10%,transparent_70%)]" />
+          <div className="grid-lines absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,#000,transparent)]" aria-hidden="true" />
+          <div className="absolute -top-40 left-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-pi-600/30 blur-[140px]" aria-hidden="true" />
+          <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-5 lg:grid-cols-12 lg:px-8">
+            <div className="min-w-0 lg:col-span-7">
+              <div data-reveal><Eyebrow dark>{hero.eyebrow}</Eyebrow></div>
+              <h1 data-reveal style={{ ["--d" as string]: "80ms" }} className="font-display mt-6 text-[2.75rem] leading-[1.02] font-semibold sm:text-6xl lg:text-[5.25rem]">
+                {hero.titleA}
+                <br />
+                <span className="text-gradient">{hero.titleB}</span>
+              </h1>
+              <p data-reveal style={{ ["--d" as string]: "160ms" }} className="mt-7 max-w-xl text-lg leading-relaxed text-white/70 sm:text-xl">{hero.sub}</p>
+              <div data-reveal style={{ ["--d" as string]: "240ms" }} className="mt-10 flex flex-col gap-3 sm:flex-row">
+                <ContactButton className="!px-7 !py-4 !text-base">Book a demo</ContactButton>
+                <a href="#agents" className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-base font-semibold text-white ring-1 ring-white/20 transition hover:bg-white/10">
+                  Meet the agents
+                </a>
+              </div>
+              <dl data-reveal style={{ ["--d" as string]: "320ms" }} className="mt-14 grid max-w-xl grid-cols-3 gap-6 border-t border-white/10 pt-7">
+                {[
+                  ["60,000", "AI calls a day"],
+                  ["1 Trillion+", "tokens / month"],
+                  ["100+", "AI agents at Paytm"],
+                ].map(([v, l]) => (
+                  <div key={l}>
+                    <dt className="sr-only">{l}</dt>
+                    <dd className="font-display text-2xl font-semibold text-white sm:text-3xl">{v}</dd>
+                    <dd className="mt-1 text-xs text-white/55 sm:text-sm">{l}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <div data-reveal style={{ ["--d" as string]: "200ms" }} className="min-w-0 lg:col-span-5">
+              <HeroConsole />
+            </div>
+          </div>
+        </section>
+
+        {/* OUTCOMES */}
+        <section id="growth" className="relative bg-mist py-24 sm:py-32">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+              <div data-reveal>
+                <Eyebrow>Outcomes, not activity</Eyebrow>
+                <h2 className="font-display mt-5 max-w-2xl text-4xl font-semibold leading-[1.05] sm:text-5xl">You name the goal. <span className="text-gradient-dark">Pi Agents get you there.</span></h2>
+              </div>
+              <p data-reveal className="max-w-sm text-ink/60">Pi Agents run the campaigns, talk to your customers, and follow up — across the full customer lifecycle.</p>
+            </div>
+            <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {outcomes.map((o, i) => (
+                <li key={o.title} data-reveal style={{ ["--d" as string]: `${i * 60}ms` }}>
+                  <a href="#agents" className="group relative grid h-full grid-cols-[auto_1fr] items-start gap-x-4 overflow-hidden rounded-3xl bg-white p-5 sm:flex sm:flex-col sm:p-7 ring-1 ring-ink/[0.06] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-24px_rgba(0,41,114,0.35)]">
+                    <span className="row-span-2 grid h-12 w-12 place-items-center rounded-2xl bg-mist ring-1 ring-ink/5 transition group-hover:bg-pi/10 sm:h-14 sm:w-14">
+                      <img src={asset(`/images/icons/${o.icon}`)} alt="" className="h-8 w-8" />
+                    </span>
+                    <h3 className="font-display text-lg font-semibold sm:mt-6 sm:text-xl">{o.title}</h3>
+                    <p className="mt-1 flex-1 text-[15px] leading-relaxed text-ink/60 sm:mt-2">{o.body}</p>
+                    <span className="mt-6 hidden h-9 w-9 items-center justify-center rounded-full bg-ink/5 sm:inline-flex text-ink transition group-hover:bg-pi group-hover:text-ink">
+                      <ArrowRight />
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* INDUSTRIES */}
+        <section id="industries" className="relative isolate overflow-hidden bg-ink py-24 text-white sm:py-32">
+          <img src={asset("/images/industries/bg.webp")} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.12]" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink via-ink/80 to-ink" aria-hidden="true" />
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div data-reveal className="text-center">
+              <Eyebrow dark>Industries</Eyebrow>
+              <h2 className="font-display mx-auto mt-5 max-w-3xl text-4xl font-semibold leading-[1.05] sm:text-6xl">
+                Pi Agents, built for <span className="text-gradient">your industry</span>
+              </h2>
+            </div>
+            <div data-reveal className="mt-12">
+              <IndustryTabs />
+            </div>
+          </div>
+        </section>
+
+        {/* LOGOS */}
+        <section aria-labelledby="trusted" className="border-b border-ink/5 bg-white py-16">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <h2 id="trusted" className="text-center text-sm font-semibold uppercase tracking-[0.2em] text-ink/45">Trusted by leading businesses across India</h2>
+            <div className="marquee mt-10 overflow-hidden">
+              <ul className="marquee-track flex w-max items-center gap-16 sm:gap-20">
+                {[...logos, ...logos].map((l, i) => (
+                  <li key={i} aria-hidden={i >= logos.length} className="shrink-0">
+                    <img src={l.src} alt={i < logos.length ? l.alt : ""} className="h-9 max-w-[150px] w-auto object-contain opacity-60 mix-blend-multiply grayscale transition hover:opacity-100 hover:grayscale-0 sm:h-11" />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* AGENTS */}
+        <section id="agents" className="bg-white py-24 sm:py-32">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div data-reveal className="max-w-3xl">
+              <Eyebrow>AI Agents</Eyebrow>
+              <h2 className="font-display mt-5 text-4xl font-semibold leading-[1.05] sm:text-6xl">
+                Three AI agents.
+                <br />
+                <span className="text-gradient-dark">One growth engine.</span>
+              </h2>
+            </div>
+            <div data-reveal className="mt-14">
+              <AgentTabs />
+            </div>
+          </div>
+        </section>
+
+        {/* SEGMENTS */}
+        <section id="who-is-it-for" className="bg-mist py-24 sm:py-32">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div data-reveal className="text-center">
+              <Eyebrow>Who is it for?</Eyebrow>
+              <h2 className="font-display mx-auto mt-5 max-w-3xl text-4xl font-semibold leading-[1.05] sm:text-6xl">
+                One growth engine for <span className="text-gradient-dark">every</span> size of business
+              </h2>
+            </div>
+            <ul className="mt-14 grid gap-5 lg:grid-cols-3">
+              {segments.map((s, i) => (
+                <li key={s.title} data-reveal style={{ ["--d" as string]: `${i * 90}ms` }} className="group relative isolate flex min-h-[300px] flex-col overflow-hidden rounded-[2rem] bg-ink p-7 sm:p-8 lg:min-h-[380px] text-white">
+                  <img src={asset("/images/segments-bg.webp")} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-70" style={{ objectPosition: ["20% 30%", "60% 50%", "90% 80%"][i] }} />
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/85 to-ink/30" />
+                  <span className="font-display text-sm font-semibold text-white/50">0{i + 1}</span>
+                  <div className="mt-auto">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-pi">{s.kicker}</p>
+                    <h3 className="font-display mt-2 text-3xl font-semibold leading-tight">{s.title}</h3>
+                    <p className="mt-4 text-[15px] leading-relaxed text-white/70">{s.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* WHY PAYTM */}
+        <section id="why-paytm" className="relative isolate overflow-hidden bg-ink py-24 text-white sm:py-32">
+          <Pixels cols={30} rows={18} density={0.18} maxOpacity={0.25} className="-z-10 opacity-60 [mask-image:radial-gradient(ellipse_at_10%_0%,#000_0%,transparent_60%)]" />
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div data-reveal className="max-w-3xl">
+              <Eyebrow dark>Why Paytm</Eyebrow>
+              <h2 className="font-display mt-5 text-4xl font-semibold leading-[1.05] sm:text-6xl">
+                Proven at scale. <span className="text-gradient">Built for our markets.</span>
+              </h2>
+            </div>
+            <div className="mt-14 grid gap-5 lg:grid-cols-12">
+              <div data-reveal className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-pi-600 via-pi-700 to-navy p-8 sm:p-10 lg:col-span-7 lg:row-span-2">
+                <Pixels cols={14} rows={10} size={48} density={0.25} maxOpacity={0.3} className="opacity-50 [mask-image:linear-gradient(to_left,#000,transparent)]" />
+                <div className="relative flex h-full flex-col">
+                  <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80"><Bolt className="h-4 w-4" /> AI Agents</p>
+                  <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+                    <div>
+                      <p className="font-display text-6xl font-semibold sm:text-7xl"><Counter value="60,000" /></p>
+                      <p className="mt-2 text-white/80">AI Calls a day</p>
+                    </div>
+                    <div>
+                      <p className="font-display text-6xl font-semibold sm:text-7xl">1 Trillion+</p>
+                      <p className="mt-2 text-white/80">Tokens consumed each month</p>
+                    </div>
+                    <div className="border-t border-white/20 pt-8 sm:col-span-2">
+                      <p className="font-display text-6xl font-semibold sm:text-7xl"><Counter value="100+" /></p>
+                      <p className="mt-2 text-white/80">Voice AI and Chat AI Agents</p>
+                    </div>
+                  </div>
+                  <p className="mt-auto pt-10 text-lg leading-relaxed text-white/90 sm:max-w-lg">
+                    Paytm has successfully deployed and runs these agents across its businesses, driving real outcomes.
+                  </p>
+                </div>
+              </div>
+              <div data-reveal style={{ ["--d" as string]: "80ms" }} className="rounded-[2rem] bg-white/[0.05] p-8 ring-1 ring-white/10 lg:col-span-5">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-pi/15 text-pi ring-1 ring-pi/30"><Layers /></span>
+                <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-pi">Robust</p>
+                <h3 className="font-display mt-2 text-2xl font-semibold">Infrastructure — the power behind every message</h3>
+                <p className="mt-3 text-white/65">Powered by Meta BSP status, Google/AWS partnerships, and our own telecom network, we provide the ultimate CPaaS layer for every conversation.</p>
+              </div>
+              <div data-reveal style={{ ["--d" as string]: "160ms" }} className="rounded-[2rem] bg-white/[0.05] p-8 ring-1 ring-white/10 lg:col-span-5">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-sun/15 text-sun ring-1 ring-sun/30"><Shield /></span>
+                <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-sun">Sovereign</p>
+                <h3 className="font-display mt-2 text-2xl font-semibold">Sovereign AI built for India and the Middle East</h3>
+                <p className="mt-3 text-white/65">DPDP-compliant by design with native Hindi and Arabic support, our AI is custom-built for the regulatory and operational realities of our markets.</p>
+                <ul className="mt-5 flex flex-wrap gap-2 text-sm">
+                  {["DPDP-compliant", "हिन्दी · Hindi", "العربية · Arabic"].map((c) => (
+                    <li key={c} className="rounded-full bg-white/[0.06] px-3 py-1 text-white/85 ring-1 ring-white/10">{c}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CASE STUDIES */}
+        <section id="case-studies" className="bg-white py-24 sm:py-32">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div data-reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+              <div>
+                <Eyebrow>Case Studies</Eyebrow>
+                <h2 className="font-display mt-5 text-4xl font-semibold leading-[1.05] sm:text-6xl">
+                  Your Business,
+                  <br />
+                  to the power of <span className="text-gradient-dark">Pi</span>
+                </h2>
+              </div>
+              <ContactButton variant="dark" className="self-start md:self-auto">Book a demo</ContactButton>
+            </div>
+            <div className="mt-14 grid gap-5 lg:grid-cols-2">
+              {/* Paytm */}
+              <article data-reveal className="flex flex-col overflow-hidden rounded-[2rem] bg-mist ring-1 ring-ink/5">
+                <div className="grid grid-cols-2 gap-px bg-ink/5">
+                  {paytmCase.stats.map((s) => (
+                    <div key={s.label} className="bg-mist p-7 sm:p-8">
+                      <p className="font-display text-4xl font-semibold text-ink sm:text-5xl"><Counter value={s.value} /></p>
+                      <p className="mt-1 text-sm text-ink/60">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-1 flex-col p-7 sm:p-8">
+                  <img src={asset("/images/case/logo-paytm.png")} alt="Paytm" className="h-8 w-auto self-start" />
+                  <h3 className="font-display mt-5 text-2xl font-semibold sm:text-3xl">Pi Agents, proven at Paytm scale</h3>
+                  <p className="mt-3 leading-relaxed text-ink/65">{paytmCase.body}</p>
+                </div>
+              </article>
+              {/* Khimji */}
+              <article data-reveal style={{ ["--d" as string]: "100ms" }} className="relative isolate flex min-h-[560px] flex-col overflow-hidden rounded-[2rem] bg-ink text-white">
+                <img src={asset("/images/case/khimji.webp")} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover object-top opacity-80" />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/80 to-ink/0" />
+                <div className="m-7 self-start rounded-xl bg-white px-4 py-2.5 sm:m-8">
+                  <img src={asset("/images/case/logo-khimji.png")} alt="Khimji Jewellers" className="h-6 w-auto" />
+                </div>
+                <div className="mt-auto p-7 sm:p-8">
+                  <div className="flex gap-10">
+                    {khimjiCase.stats.map((s) => (
+                      <div key={s.label}>
+                        <p className="font-display text-4xl font-semibold text-sun sm:text-5xl"><Counter value={s.value} /></p>
+                        <p className="mt-1 text-sm text-white/70">{s.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <h3 className="font-display mt-6 text-2xl font-semibold sm:text-3xl">How Khimji Jewellers drove festive walk-ins with Pi Agents</h3>
+                  <p className="mt-3 leading-relaxed text-white/75">{khimjiCase.body}</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section id="contact" className="px-5 pb-24 lg:px-8">
+          <div data-reveal className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-pi via-pi-600 to-navy px-7 py-16 text-white sm:px-14 sm:py-24">
+            <Pixels cols={28} rows={10} density={0.3} maxOpacity={0.35} className="-z-10 opacity-60 [mask-image:linear-gradient(to_left,#000,transparent_70%)]" />
+            <div className="grid items-center gap-10 lg:grid-cols-12">
+              <div className="lg:col-span-8">
+                <h2 className="font-display text-4xl font-semibold leading-[1.05] sm:text-6xl">Ready to power-up with Pi?</h2>
+                <p className="mt-5 max-w-xl text-lg text-white/85">Get a demo, and contact us to design a custom package for your business.</p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:flex-col lg:items-end">
+                <ContactButton variant="dark" className="!px-8 !py-4 !text-base sm:w-56">Contact Sales</ContactButton>
+                <ContactButton variant="light" className="!px-8 !py-4 !text-base sm:w-56">Book a demo</ContactButton>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* FOOTER */}
+      <footer className="bg-ink text-white">
+        <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+          <div className="flex flex-col justify-between gap-10 md:flex-row md:items-start">
+            <div>
+              <PiLogo className="h-12 w-auto" />
+              <p className="mt-4 max-w-xs text-sm text-white/55">Get more customers per dollar, earn more dollars per customer.</p>
+            </div>
+            <nav aria-label="Footer">
+              <ul className="grid grid-cols-2 gap-x-12 gap-y-3 text-sm sm:grid-cols-3">
+                {footerLinks.map((l) => (
+                  <li key={l.label}>
+                    <a href={l.href} {...(l.href.startsWith("http") ? { target: "_blank", rel: "noopener" } : {})} className="inline-flex items-center gap-1 text-white/70 hover:text-white">
+                      {l.label}
+                      {l.href.startsWith("http") && <ArrowUpRight className="h-3 w-3 opacity-50" />}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+          <div className="mt-14 flex flex-col-reverse items-start justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
+            <p className="text-sm text-white/50">©Paytm · All Rights Reserved · Pi by <span className="font-semibold tracking-wider text-white/80">PAYTM</span></p>
+            <ul className="flex gap-2">
+              {socials.map((s) => (
+                <li key={s.label}>
+                  <a href={s.href} target="_blank" rel="noopener" aria-label={s.label} className="grid h-10 w-10 place-items-center rounded-full bg-white/5 text-white/70 ring-1 ring-white/10 transition hover:bg-pi hover:text-ink">
+                    <Social name={s.label} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </ContactProvider>
+  );
+}
