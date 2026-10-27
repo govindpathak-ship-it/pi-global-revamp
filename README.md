@@ -42,20 +42,3 @@ To post leads to a CRM instead, replace `submit()` in `src/components/Contact.ts
 ## Brand theme
 
 Typography and colour follow paytm.com: **Inter** (SIL OFL, self-hosted via `next/font`), navy `#002970`, cyan `#00BAF2`, text `#101010` / `#505050` / `#707070`, light surfaces `#F7F9FC`, `#E0F5FD`, `#F2FBFF`. For contrast, cyan text on white uses the derived shades `#0093D6` (large) and `#007DB8` (small), and cyan buttons use navy text. Tokens live in `src/app/globals.css` (`@theme`).
-
-## Voice samples ("Hear Pi talk")
-
-The `#hear-pi-talk` section plays three **sample calls with synthesised voices** (illustrative scripts shared with the hero console in `src/lib/scenarios.ts`; no real customers).
-
-| Sample | Audio | Length |
-| --- | --- | --- |
-| Book a test drive (English, outbound sales) | `public/audio/sales-test-drive.mp3` (mono 48 kbps, ~87 KB) | 14.8 s |
-| Refund for a damaged item (English, inbound service) | `public/audio/service-refund.mp3` (~114 KB) | 19.5 s |
-| EMI reminder, promise to pay (Hindi/Hinglish, outbound ops) | none: spoken by the visitor's browser (`speechSynthesis`, `hi-IN`) | ~21 s (estimated) |
-
-- **Generated offline** with [Piper TTS](https://github.com/OHF-Voice/piper1-gpl) 1.8 (`piper-tts`, GPL-3.0-or-later; the tool's licence does not apply to the audio it produces). No script text was sent to any cloud TTS service.
-- **Voice model:** `en_GB-vctk-medium`, trained on the **CSTR VCTK Corpus** (University of Edinburgh), licensed **CC BY 4.0**. Attribution: *"CSTR VCTK Corpus: English Multi-speaker Corpus for CSTR Voice Cloning Toolkit (version 0.92)", Yamagishi, Veaux & MacDonald, University of Edinburgh, CC BY 4.0.* Speakers with Indian-English accents were chosen: p248 (Pi Agent), p251 (sales customer), p376 (service customer).
-- **Why Hindi uses the browser voice:** the offline Hindi Piper voices are either non-commercial (`hi_IN-pratham`, `hi_IN-priyamvada`: CC BY-NC-SA 4.0) or have unclear commercial terms (`hi_IN-rohan`, IIT Madras IndicTTS licence); Meta MMS-TTS is CC BY-NC; AI4Bharat Indic Parler-TTS (Apache-2.0) is gated behind a Hugging Face login. So the Hindi sample is spoken by the visitor's own browser voice (Devanagari text, Roman Hinglish captions). Browser speech can't be routed through Web Audio, so its waveform is simulated and labelled; with no Hindi voice installed it falls back to timed captions and says so.
-- **Regenerate:** `pip install piper-tts`, download `en_GB-vctk-medium.onnx` (+ `.json`) from `rhasspy/piper-voices`, then `PIPER_MODEL=... python scripts/tts/gen.py` (needs `ffmpeg` with libmp3lame). It writes the mp3s and `cues.json` (per-line start/end), which feed `src/lib/voiceSamples.ts`.
-- **Behaviour:** no autoplay; audio is lazy-loaded on first play (`preload="none"`); English waveform is a real Web Audio `AnalyserNode` on the `<audio>` element; captions highlight the current line (`aria-current`) and double as a clickable transcript; the hero animation pauses while a sample plays (`pi-demo` window event).
-- **Check:** `npm run build && node scripts/voice-demo-check.mjs` plays each sample in headless Chrome and logs time, active caption and waveform level.

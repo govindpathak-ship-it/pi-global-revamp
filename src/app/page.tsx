@@ -6,7 +6,6 @@ import { Counter } from "@/components/Counter";
 import { IndustryTabs } from "@/components/IndustryTabs";
 import { AgentTabs } from "@/components/AgentTabs";
 import { HeroConsole } from "@/components/HeroConsole";
-import { HearPiTalk } from "@/components/HearPiTalk";
 import { Pixels } from "@/components/Pixels";
 import { PiLogo } from "@/components/PiLogo";
 import { ArrowRight, ArrowUpRight, Bolt, Layers, Shield, Social } from "@/components/icons";
@@ -48,13 +47,6 @@ export default function Home() {
                   Meet the agents
                 </a>
               </div>
-              <a data-reveal style={{ ["--d" as string]: "280ms" }} href="#hear-pi-talk" className="group mt-5 inline-flex items-center gap-2.5 rounded-full py-1 pr-3 text-sm font-semibold text-pi-ink transition hover:text-navy">
-                <span className="grid h-8 w-8 place-items-center rounded-full bg-pi text-navy shadow-[0_6px_18px_rgba(0,186,242,0.45)] transition group-hover:scale-105" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" className="ml-0.5 h-3.5 w-3.5" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" /></svg>
-                </span>
-                Hear Pi talk
-                <span className="font-normal text-muted">· 3 sample calls</span>
-              </a>
               <dl data-reveal style={{ ["--d" as string]: "320ms" }} className="mt-14 grid max-w-xl grid-cols-3 gap-6 border-t border-line pt-7">
                 {[
                   ["60,000", "AI calls a day"],
@@ -71,30 +63,6 @@ export default function Home() {
             </div>
             <div data-reveal style={{ ["--d" as string]: "200ms" }} className="min-w-0 lg:col-span-5">
               <HeroConsole />
-            </div>
-          </div>
-        </section>
-
-        {/* HEAR PI TALK */}
-        <section id="hear-pi-talk" aria-labelledby="hear-pi-talk-title" className="scroll-mt-24 border-t border-line/70 bg-white py-24 sm:py-32">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <div data-reveal className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-3xl">
-                <Eyebrow>Hear Pi talk</Eyebrow>
-                <h2 id="hear-pi-talk-title" className="font-display mt-5 text-[2rem] font-bold leading-[1.1] text-ink sm:text-[2.5rem] lg:text-5xl">
-                  Listen to a Pi voice agent
-                  <br />
-                  <span className="text-pi-strong">book, resolve and collect.</span>
-                </h2>
-                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-body">Pick a call, press play, and follow the live captions. Each sample shows who is speaking and how the agent moves the conversation to an outcome.</p>
-              </div>
-              <span className="inline-flex w-fit items-center gap-2 rounded-full bg-ice px-4 py-2 text-xs font-semibold text-navy">
-                <span className="h-1.5 w-1.5 rounded-full bg-pi" aria-hidden="true" />
-                Sample calls with synthesised voices
-              </span>
-            </div>
-            <div data-reveal className="mt-12">
-              <HearPiTalk />
             </div>
           </div>
         </section>

@@ -152,10 +152,3 @@ body {
   50% { box-shadow: 0 0 0 3px #fff, 0 0 0 9px color-mix(in srgb, var(--ring) 35%, transparent); }
 }
 .caret { animation: blink 0.9s infinite; }
-
-/* Hear Pi talk: seek bar */
-.pi-range { -webkit-appearance: none; appearance: none; height: 6px; border-radius: 9999px; cursor: pointer;
-  background: linear-gradient(to right, var(--color-pi) var(--p, 0%), rgb(255 255 255 / 0.18) var(--p, 0%)); }
-.pi-range::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 9999px; background: #fff; box-shadow: 0 0 0 4px rgb(0 186 242 / 0.35); }
-.pi-range::-moz-range-thumb { height: 16px; width: 16px; border: 0; border-radius: 9999px; background: #fff; box-shadow: 0 0 0 4px rgb(0 186 242 / 0.35); }
-.pi-range:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }

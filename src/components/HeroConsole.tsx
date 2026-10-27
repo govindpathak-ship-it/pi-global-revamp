@@ -3,11 +3,75 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { agents } from "@/lib/content";
 import { PiLogo } from "./PiLogo";
-import { accent, scenarios, type Msg } from "@/lib/scenarios";
 
 // Illustrative product visual. Agent names/outcome flows come from the live site; the conversations are generic examples
 // (no real customers, no performance claims). A tiny timer-driven state machine plays them on a loop:
 // voice scenes render as a live call (waveform, timer, word-by-word captions); WhatsApp scenes as a chat.
+
+const accent: Record<string, string> = { sales: "#00BAF2", service: "#27AE60", operations: "#002970" };
+
+type Msg = { from: "agent" | "user"; text: string; lights?: number };
+type Scenario = {
+  agent: string;
+  agentName: string;
+  channel: "WhatsApp" | "Voice AI";
+  call?: { direction: "Outbound" | "Inbound"; language: string };
+  msgs: Msg[];
+};
+
+const scenarios: Scenario[] = [
+  {
+    agent: "sales", agentName: "Pi Sales & Marketing Agent", channel: "Voice AI", call: { direction: "Outbound", language: "English" },
+    msgs: [
+      { from: "agent", lights: 1, text: "Hi! I’m calling about the SUV you enquired about. Is this a good time?" },
+      { from: "user", text: "Yes. Can I take a test drive?" },
+      { from: "agent", lights: 2, text: "Of course! Does Saturday at 11 AM work for you?" },
+      { from: "user", text: "Saturday works." },
+      { from: "agent", lights: 3, text: "Booked! I’ve sent the details to your WhatsApp." },
+    ],
+  },
+  {
+    agent: "operations", agentName: "Pi Operations Agent", channel: "WhatsApp",
+    msgs: [
+      { from: "agent", lights: 1, text: "Hi! Your EMI is due on the 5th. Shall I set up UPI Autopay so you never miss a payment?" },
+      { from: "user", text: "Yes, please set it up." },
+      { from: "agent", lights: 2, text: "Done ✅ UPI Autopay is active, and your KYC is now complete." },
+      { from: "user", text: "Super, thank you!" },
+      { from: "agent", lights: 3, text: "You’re all set. Reminders and receipts will come right here on WhatsApp." },
+    ],
+  },
+  {
+    agent: "service", agentName: "Pi Service Agent", channel: "Voice AI", call: { direction: "Inbound", language: "English" },
+    msgs: [
+      { from: "user", text: "Hi, one item in order #OD1024 came damaged. I want a refund." },
+      { from: "agent", lights: 1, text: "Sorry about that! Is it the blue kurta from order #OD1024?" },
+      { from: "user", text: "Yes, that one." },
+      { from: "agent", lights: 2, text: "Done. Your refund is initiated, and you’ll get an SMS shortly." },
+      { from: "user", text: "That was quick, thanks!" },
+      { from: "agent", lights: 3, text: "Happy to help. Have a great day!" },
+    ],
+  },
+  {
+    agent: "sales", agentName: "Pi Sales & Marketing Agent", channel: "WhatsApp",
+    msgs: [
+      { from: "agent", lights: 1, text: "Hi! You were looking at a few items earlier — they’re still in your cart. Want me to help you complete the order?" },
+      { from: "user", text: "Yes please, share the link." },
+      { from: "agent", lights: 2, text: "Here’s your secure payment link 🔗 Pay in one tap with UPI." },
+      { from: "user", text: "Paid ✅" },
+      { from: "agent", lights: 3, text: "Thank you! Your order is confirmed and on its way 🎉" },
+    ],
+  },
+  {
+    agent: "operations", agentName: "Pi Operations Agent", channel: "Voice AI", call: { direction: "Outbound", language: "Hindi" },
+    msgs: [
+      { from: "agent", lights: 1, text: "Namaste! Aapki EMI 5 tareekh ko due hai. Kya aap tab tak payment kar paayenge?" },
+      { from: "user", text: "Haan, main 4 tareekh tak kar dunga." },
+      { from: "agent", lights: 2, text: "Theek hai, 4 tareekh note kar li hai. Payment link WhatsApp par bhej diya hai." },
+      { from: "user", text: "Thank you." },
+      { from: "agent", lights: 3, text: "Dhanyavaad! Aapko ek reminder bhi mil jayega." },
+    ],
+  },
+];
 
 const clamp = (n: number, a: number, b: number) => Math.min(b, Math.max(a, n));
 const readTime = (m?: Msg) => (m ? clamp(700 + m.text.length * 18, 1200, 2500) : 700);
@@ -53,16 +117,13 @@ export function HeroConsole() {
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     let inView = false;
-    let demo = false; // paused while a "Hear Pi talk" sample is playing
-    const update = () => { setReduced(mq.matches); setRunning(inView && !document.hidden && !mq.matches && !demo); };
-    const onDemo = (e: Event) => { demo = Boolean((e as CustomEvent<{ playing: boolean }>).detail?.playing); update(); };
-    window.addEventListener("pi-demo", onDemo);
+    const update = () => { setReduced(mq.matches); setRunning(inView && !document.hidden && !mq.matches); };
     const io = new IntersectionObserver(([e]) => { inView = e.isIntersecting; update(); }, { threshold: 0.15 });
     if (rootRef.current) io.observe(rootRef.current);
     document.addEventListener("visibilitychange", update);
     mq.addEventListener("change", update);
     update();
-    return () => { io.disconnect(); window.removeEventListener("pi-demo", onDemo); document.removeEventListener("visibilitychange", update); mq.removeEventListener("change", update); };
+    return () => { io.disconnect(); document.removeEventListener("visibilitychange", update); mq.removeEventListener("change", update); };
   }, []);
 
   // Reduced motion: static, complete voice call.
@@ -113,7 +174,7 @@ export function HeroConsole() {
   const speaker = voice && speaking ? s.msgs[count]?.from : null;
 
   return (
-    <div ref={rootRef} data-running={running ? "true" : "false"} className="relative mx-auto w-full max-w-[520px]">
+    <div ref={rootRef} className="relative mx-auto w-full max-w-[520px]">
       <div className="absolute -inset-8 rounded-[2.5rem] bg-gradient-to-br from-pi/30 via-ice to-sky/40 blur-2xl" aria-hidden="true" />
       <div className="relative overflow-hidden rounded-[2rem] bg-white p-5 shadow-[0_30px_80px_-20px_rgba(0,41,112,0.35)] ring-1 ring-navy/10">
         <div className="flex items-center justify-between">
