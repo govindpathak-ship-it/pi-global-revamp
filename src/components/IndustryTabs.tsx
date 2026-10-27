@@ -36,11 +36,11 @@ export function IndustryTabs() {
       </div>
 
       <div key={ind.id} role="tabpanel" id={`panel-${ind.id}`} aria-labelledby={`tab-${ind.id}`} className="mt-10 grid animate-[fadeUp_.5s_ease] gap-5 lg:grid-cols-12">
-        <div className="relative min-h-[300px] overflow-hidden rounded-3xl bg-navy lg:col-span-5 lg:min-h-[460px]">
+        <div className="relative min-h-[300px] overflow-hidden rounded-3xl bg-ink lg:col-span-5 lg:min-h-[460px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={ind.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-br from-pi/30 via-transparent to-transparent mix-blend-screen" />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-transparent" />
+          {/* Light bottom-only scrim keeps the label readable without hiding the photo */}
+          <div className="absolute inset-0 bg-gradient-to-t from-navy/90 from-0% via-navy/45 via-30% to-transparent to-60%" />
           <div className="absolute inset-x-0 bottom-0 p-7">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-aqua">{ind.label}</p>
             <p className="font-display mt-2 text-2xl font-semibold leading-tight text-white sm:text-3xl">{ind.tagline}</p>

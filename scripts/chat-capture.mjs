@@ -31,7 +31,7 @@ const state = (p) => p.evaluate(() => {
   const box = panel.getBoundingClientRect();
   const card = panel.closest(".relative").getBoundingClientRect();
   return { head: panel.querySelector(".chat-head").innerText.replace(/\s+/g, " "), msgs: panel.querySelectorAll(".msg-in p").length,
-    typing: !!panel.querySelector(".typing"), active: document.querySelector("[data-active]")?.innerText.split("\n")[0],
+    typing: !!panel.querySelector(".typing"), live: panel.querySelector(".chat-head").innerText.includes("Live") ? panel.querySelector(".chat-head span.ml-auto")?.innerText : "", wave: !!panel.querySelector(".wave-on"), active: document.querySelector("[data-active]")?.innerText.split("\n")[0],
     lit: document.querySelectorAll(".step-on").length, chatH: Math.round(box.height), cardH: Math.round(card.height) };
 });
 
@@ -43,14 +43,14 @@ async function run(name, opts, secs, video) {
   const log = [];
   for (let t = 0; t <= secs; t += 1) {
     const s = await state(p); log.push({ t, ...s });
-    if (t % 3 === 0 && t <= 45) await shot(p, `screenshots/chat/${prefix}-${name}-t${String(t).padStart(2, "0")}.png`);
+    if (t % 3 === 0) await shot(p, `screenshots/chat/${prefix}-${name}-t${String(t).padStart(2, "0")}.png`);
     await p.waitForTimeout(1000);
   }
   let vp = null;
   if (video) { // ~16s clip of the panel: timestamped screenshots -> ffmpeg concat
     fs.rmSync("/tmp/clip", { recursive: true, force: true }); fs.mkdirSync("/tmp/clip");
     const t0 = Date.now(); const ts = []; let i = 0;
-    while (Date.now() - t0 < 16000) { await shot(p, `/tmp/clip/f${String(i).padStart(4, "0")}.png`); ts.push(Date.now()); i++; }
+    while (Date.now() - t0 < 20500) { await shot(p, `/tmp/clip/f${String(i).padStart(4, "0")}.png`); ts.push(Date.now()); i++; }
     const lines = []; for (let k = 0; k < i; k++) { lines.push(`file 'f${String(k).padStart(4, "0")}.png'`); lines.push(`duration ${((ts[k + 1] ?? ts[k] + 80) - ts[k]) / 1000}`); }
     fs.writeFileSync("/tmp/clip/list.txt", lines.join("\n")); vp = `${i} frames`;
   }
@@ -58,9 +58,9 @@ async function run(name, opts, secs, video) {
   return { log, vp };
 }
 
-const d = await run("desktop", { viewport: { width: 1440, height: 900 } }, 44, prefix === "local");
+const d = await run("desktop", { viewport: { width: 1440, height: 900 } }, 80, prefix === "local");
 console.log("DESKTOP"); d.log.forEach((l) => console.log(JSON.stringify(l)));
-const m = await run("mobile", { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true }, 12, false);
+const m = await run("mobile", { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true }, 24, false);
 console.log("MOBILE"); m.log.forEach((l) => console.log(JSON.stringify(l)));
 
 // Pause when off-screen
