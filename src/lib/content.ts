@@ -120,7 +120,7 @@ export const agents: Agent[] = [
     short: "Sales & Marketing",
     tagline: "More customers per dollar, More dollars per customer.",
     body: "From first contact to completed application, working customer by customer, on whichever channel the customer best responds to.",
-    accent: "#00B7FF",
+    accent: "#00BAF2",
     flow: ["Leads Acquired", "Customers Converted", "Revenue Retained"],
     does: [
       "Acquires leads",
@@ -138,7 +138,7 @@ export const agents: Agent[] = [
     short: "Service",
     tagline: "Every Query, Resolved.",
     body: "Resolves the issue a customer raised. Always available, fully contextual, and able to hand off to a human when required.",
-    accent: "#2BD47D",
+    accent: "#27AE60",
     flow: ["Query Received", "Issue Resolved", "Customer Retained"],
     does: [
       "Answers customer questions",
@@ -156,7 +156,7 @@ export const agents: Agent[] = [
     short: "Operations",
     tagline: "Outcomes, Actioned.",
     body: "Undertakes the outcome action inside enterprise systems, with the audit trail written as it happens.",
-    accent: "#FED633",
+    accent: "#85EEFC",
     flow: ["Action Triggered", "System Updated", "Compliance Assured"],
     does: [
       "Undertakes collections and recovery",

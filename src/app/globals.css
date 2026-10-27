@@ -1,18 +1,27 @@
 @import "tailwindcss";
 
+/* Brand tokens taken from paytm.com (inline CSS + computed styles, Oct 2026) */
 @theme {
-  --color-ink: #000c22;
-  --color-ink-2: #04163a;
-  --color-navy: #002972;
-  --color-pi: #00b7ff;
-  --color-pi-600: #0090fd;
-  --color-pi-700: #175cb0;
-  --color-sky: #66d6ff;
-  --color-sun: #fed633;
-  --color-mint: #2bd47d;
-  --color-mist: #f3f7ff;
+  --color-navy: #002970;      /* Paytm navy: pill buttons, header "Sign In", footer band */
+  --color-navy-2: #1d2f54;    /* paytm.com secondary dark blue */
+  --color-pi: #00baf2;        /* Paytm cyan: CTAs, links, highlighted headline words */
+  --color-pi-2: #00b9f5;      /* paytm.com cyan variant */
+  --color-pi-strong: #0093d6; /* derived: darker cyan for large accent text on white (>=3:1) */
+  --color-pi-ink: #007db8;    /* derived: cyan for small text on white (>=4.5:1) */
+  --color-aqua: #85eefc;      /* paytm.com light aqua */
+  --color-sky: #96d8ee;       /* paytm.com light cyan */
+  --color-ice: #e0f5fd;       /* paytm.com cyan tint */
+  --color-ice-2: #f2fbff;     /* paytm.com cyan tint */
+  --color-mist: #f7f9fc;      /* paytm.com page/section background */
+  --color-mist-2: #f5f8fa;
+  --color-ink: #101010;       /* paytm.com heading text */
+  --color-body: #505050;      /* paytm.com secondary text */
+  --color-muted: #707070;     /* paytm.com most-used body/link grey */
+  --color-line: #e0e0e0;      /* paytm.com borders */
+  --color-mint: #27ae60;      /* paytm.com success green */
+  --color-coral: #eb5757;     /* paytm.com alert red */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-inter-tight), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -25,27 +34,15 @@ body {
   text-rendering: optimizeLegibility;
 }
 ::selection {
-  background: #00b7ff;
-  color: #000c22;
+  background: #00baf2;
+  color: #002970;
 }
 
 .font-display {
-  font-family: var(--font-inter-tight), var(--font-inter), sans-serif;
-  letter-spacing: -0.035em;
+  font-family: var(--font-inter), sans-serif;
+  letter-spacing: -0.02em;
 }
 
-.text-gradient {
-  background: linear-gradient(92deg, #66d6ff 0%, #00b7ff 40%, #8be3ff 70%, #fed633 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.text-gradient-dark {
-  background: linear-gradient(92deg, #0090fd 0%, #00b7ff 55%, #175cb0 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
 
 /* Pixel mosaic: echoes the blue tile grid of the live pi.global hero */
 .pixel {
@@ -58,8 +55,8 @@ body {
 
 .grid-lines {
   background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid, rgb(0 41 112 / 0.06)) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid, rgb(0 41 112 / 0.06)) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 

@@ -38,3 +38,7 @@ Elsewhere: `out/` is plain HTML/CSS/JS — upload to any static host (S3 + Cloud
 All copy, numbers and logos live in `src/lib/content.ts` and come from the live pi.global site.
 Contact Sales opens a form that composes an email to sales@paytmpayments.com (the live site's own fallback).
 To post leads to a CRM instead, replace `submit()` in `src/components/Contact.tsx`.
+
+## Brand theme
+
+Typography and colour follow paytm.com: **Inter** (SIL OFL, self-hosted via `next/font`), navy `#002970`, cyan `#00BAF2`, text `#101010` / `#505050` / `#707070`, light surfaces `#F7F9FC`, `#E0F5FD`, `#F2FBFF`. For contrast, cyan text on white uses the derived shades `#0093D6` (large) and `#007DB8` (small), and cyan buttons use navy text. Tokens live in `src/app/globals.css` (`@theme`).

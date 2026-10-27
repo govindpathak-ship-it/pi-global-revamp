@@ -24,20 +24,22 @@ export function ContactButton({
 }: {
   children: React.ReactNode;
   className?: string;
-  variant?: "primary" | "dark" | "ghost" | "light";
+  variant?: "primary" | "cyan" | "outline" | "light" | "ghost";
 }) {
   const { open } = useContext(Ctx);
+  // Paytm-style pill buttons (paytm.com: navy #002970 pills, 16px/600, hover inverts to white)
   const styles = {
-    primary: "bg-pi text-ink hover:bg-sky shadow-[0_10px_40px_-10px_rgba(0,183,255,0.8)]",
-    dark: "bg-ink text-white hover:bg-navy",
-    ghost: "bg-white/5 text-white ring-1 ring-white/20 hover:bg-white/10",
-    light: "bg-white text-ink hover:bg-mist",
-  }[variant];
+    primary: "bg-navy text-white ring-1 ring-navy hover:bg-white hover:text-navy",
+    cyan: "bg-pi text-navy hover:bg-white",
+    outline: "bg-white text-navy ring-1 ring-navy hover:bg-navy hover:text-white",
+    light: "bg-white text-navy hover:bg-ice",
+    ghost: "bg-transparent text-white ring-1 ring-white/40 hover:bg-white/10",
+}[variant];
   return (
     <button
       type="button"
       onClick={open}
-      className={`group inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pi ${styles} ${className}`}
+      className={`group inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-[15px] font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pi-ink ${styles} ${className}`}
     >
       {children}
       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -85,11 +87,11 @@ function ContactModal({ onClose }: { onClose: () => void }) {
     setSent(true);
   }
 
-  const field = "w-full rounded-xl border border-ink/10 bg-mist/60 px-4 py-3 text-sm text-ink placeholder:text-ink/40 outline-none transition focus:border-pi focus:bg-white focus:ring-4 focus:ring-pi/15";
+  const field = "w-full rounded-xl border border-line bg-mist px-4 py-3 text-sm text-ink placeholder:text-muted outline-none transition focus:border-pi focus:bg-white focus:ring-4 focus:ring-pi/20";
 
   return (
     <div className="fixed inset-0 z-[100] flex items-end justify-center p-0 sm:items-center sm:p-6">
-      <div className="absolute inset-0 bg-ink/70 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
+      <div className="absolute inset-0 bg-navy/60 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
       <div
         ref={dialogRef}
         role="dialog"
@@ -97,44 +99,44 @@ function ContactModal({ onClose }: { onClose: () => void }) {
         aria-labelledby="contact-title"
         className="relative w-full max-w-lg overflow-hidden rounded-t-3xl bg-white shadow-2xl sm:rounded-3xl"
       >
-        <div className="h-1.5 w-full bg-gradient-to-r from-pi via-sky to-sun" />
+        <div className="h-1.5 w-full bg-gradient-to-r from-pi to-navy" />
         <div className="p-6 sm:p-8">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h2 id="contact-title" className="font-display text-2xl font-semibold">Tell us about your business.</h2>
-              <p className="mt-1 text-sm text-ink/60">We’ll be in touch.</p>
+              <h2 id="contact-title" className="font-display text-2xl font-semibold text-ink">Tell us about your business.</h2>
+              <p className="mt-1 text-sm text-muted">We’ll be in touch.</p>
             </div>
-            <button onClick={onClose} className="rounded-full p-2 text-ink/60 hover:bg-mist hover:text-ink" aria-label="Close">
+            <button onClick={onClose} className="rounded-full p-2 text-muted hover:bg-mist hover:text-ink" aria-label="Close">
               <Close />
             </button>
           </div>
           {sent ? (
-            <p className="mt-8 rounded-2xl bg-mist p-6 text-sm text-ink/80" role="status">
+            <p className="mt-8 rounded-2xl bg-ice-2 p-6 text-sm text-body" role="status">
               Thank you! Your email app should open with your details. If it doesn’t, write to{" "}
-              <a className="font-semibold text-pi-600 underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+              <a className="font-semibold text-pi-ink underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
             </p>
           ) : (
             <form onSubmit={submit} className="mt-6 grid grid-cols-2 gap-3">
-              <label className="col-span-1 text-xs font-medium text-ink/70">First Name<input required name="firstName" className={`${field} mt-1`} autoComplete="given-name" /></label>
-              <label className="col-span-1 text-xs font-medium text-ink/70">Last Name<input required name="lastName" className={`${field} mt-1`} autoComplete="family-name" /></label>
-              <label className="col-span-2 text-xs font-medium text-ink/70">Company<input required name="company" className={`${field} mt-1`} autoComplete="organization" /></label>
-              <label className="col-span-2 text-xs font-medium text-ink/70">Work Email<input required type="email" name="email" className={`${field} mt-1`} autoComplete="email" /></label>
-              <label className="col-span-2 text-xs font-medium text-ink/70 sm:col-span-1">Role
+              <label className="col-span-1 text-xs font-semibold text-body">First Name<input required name="firstName" className={`${field} mt-1`} autoComplete="given-name" /></label>
+              <label className="col-span-1 text-xs font-semibold text-body">Last Name<input required name="lastName" className={`${field} mt-1`} autoComplete="family-name" /></label>
+              <label className="col-span-2 text-xs font-semibold text-body">Company<input required name="company" className={`${field} mt-1`} autoComplete="organization" /></label>
+              <label className="col-span-2 text-xs font-semibold text-body">Work Email<input required type="email" name="email" className={`${field} mt-1`} autoComplete="email" /></label>
+              <label className="col-span-2 text-xs font-semibold text-body sm:col-span-1">Role
                 <select required name="role" defaultValue="" className={`${field} mt-1`}>
                   <option value="" disabled>Select your role</option>
                   {roles.map((r) => <option key={r}>{r}</option>)}
                 </select>
               </label>
-              <label className="col-span-2 text-xs font-medium text-ink/70 sm:col-span-1">Industry
+              <label className="col-span-2 text-xs font-semibold text-body sm:col-span-1">Industry
                 <select required name="industry" defaultValue="" className={`${field} mt-1`}>
                   <option value="" disabled>Select your industry</option>
                   {formIndustries.map((r) => <option key={r}>{r}</option>)}
                 </select>
               </label>
-              <button type="submit" className="col-span-2 mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-navy">
+              <button type="submit" className="col-span-2 mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-navy px-5 py-3.5 text-base font-semibold text-white transition hover:bg-navy-2">
                 Talk to us <ArrowRight />
               </button>
-              <p className="col-span-2 text-center text-xs text-ink/50">We’ll only use this to get in touch about Pi Agents.</p>
+              <p className="col-span-2 text-center text-xs text-muted">We’ll only use this to get in touch about Pi Agents.</p>
             </form>
           )}
         </div>
