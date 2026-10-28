@@ -25,7 +25,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled || open ? "bg-white/90 shadow-[0_2px_14px_rgba(0,41,112,0.1)] backdrop-blur-xl" : "bg-transparent"}`}>
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled || open ? "bg-white/95 shadow-[0_2px_14px_rgba(0,41,112,0.1)] sm:bg-white/90 sm:backdrop-blur-xl" : "bg-transparent"}`}>
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:rounded-lg focus:bg-navy focus:px-3 focus:py-2 focus:text-white">Skip to main content</a>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5 py-2 sm:h-18 sm:py-3 lg:px-8">
         <a href="#top" className="flex min-h-11 shrink-0 items-center text-ink" aria-label="Pi Agents home">

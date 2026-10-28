@@ -31,7 +31,9 @@ export default function Home() {
         <section id="top" className="relative isolate overflow-hidden bg-gradient-to-b from-ice-2 via-white to-white pt-24 pb-16 text-ink sm:pt-40 sm:pb-24 lg:pb-32">
           <Pixels palette={["#00baf2", "#96d8ee", "#e0f5fd", "#85eefc"]} maxOpacity={0.3} className="hidden opacity-60 sm:block [mask-image:radial-gradient(ellipse_at_75%_25%,#000_5%,transparent_65%)]" />
           <div className="grid-lines absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,#000,transparent)]" aria-hidden="true" />
-          <div className="absolute -top-40 left-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-pi/20 blur-[140px]" aria-hidden="true" />
+          <div className="absolute -top-40 left-1/2 -z-10 hidden h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-pi/20 blur-[140px] sm:block" aria-hidden="true" />
+          {/* Phones: same soft glow from a plain gradient — a 140px blur is very costly on mobile GPUs */}
+          <div className="absolute -top-24 left-1/2 -z-10 h-[460px] w-[640px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(0_186_242/0.16),transparent)] sm:hidden" aria-hidden="true" />
           <div className="absolute right-[-10%] top-1/4 -z-10 hidden h-[520px] w-[520px] rounded-full bg-[radial-gradient(closest-side,rgb(0_186_242/0.18),transparent)] lg:block" aria-hidden="true" />
           <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 sm:gap-16 lg:grid-cols-12 lg:px-8">
             <div className="min-w-0 lg:col-span-7">

@@ -54,7 +54,7 @@ export function AgentTabs() {
         style={{ ["--accent" as string]: a.accent }}
         className="relative animate-[fadeUp_.5s_ease] overflow-hidden rounded-[2rem] bg-navy p-6 text-white sm:p-10 lg:col-span-8"
       >
-        <div className="pointer-events-none absolute -top-32 -right-24 h-80 w-80 rounded-full opacity-25 blur-3xl" style={{ background: a.accent }} />
+        <div className="pointer-events-none absolute -top-32 -right-24 h-80 w-80 hidden rounded-full opacity-25 blur-3xl sm:block" style={{ background: a.accent }} />
         <div className="grid-lines pointer-events-none absolute inset-0" style={{ ["--grid" as string]: "rgb(255 255 255 / 0.05)" }} />
         <div className="relative">
           <h3 className="font-display text-[1.625rem] font-semibold leading-tight sm:text-4xl">{a.tagline}</h3>

@@ -175,7 +175,7 @@ export function HeroConsole() {
 
   return (
     <div ref={rootRef} className="relative mx-auto w-full max-w-[520px]">
-      <div className="absolute -inset-8 rounded-[2.5rem] bg-gradient-to-br from-pi/30 via-ice to-sky/40 blur-2xl" aria-hidden="true" />
+      <div className="absolute -inset-8 rounded-[2.5rem] bg-gradient-to-br from-pi/30 via-ice to-sky/40 max-sm:opacity-60 max-sm:blur-none sm:blur-2xl" aria-hidden="true" />
       <div className="frost sheen-once relative overflow-hidden rounded-[1.75rem] p-4 sm:rounded-[2rem] sm:p-5">
         <div className="flex items-center justify-between">
           <PiLogo className="h-8 w-auto text-ink" />

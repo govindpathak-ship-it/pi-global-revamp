@@ -54,7 +54,7 @@ export function IndustryTabs() {
                 <h3 className="font-display text-xl font-semibold text-ink">{p.title}</h3>
               </div>
               <p className="mt-4 text-[15px] leading-relaxed text-body">{p.body}</p>
-              <div className="pointer-events-none absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-pi/15 opacity-0 blur-2xl transition group-hover:opacity-100" />
+              <div className="pointer-events-none absolute -right-10 -bottom-10 h-32 w-32 hidden rounded-full bg-pi/15 opacity-0 blur-2xl transition group-hover:opacity-100 sm:block" />
             </div>
           ))}
         </div>

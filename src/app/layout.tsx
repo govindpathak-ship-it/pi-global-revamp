@@ -25,10 +25,6 @@ export const viewport: Viewport = { themeColor: "#002970" };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
-      <head>
-        {/* Enables scroll-reveal styles only when JS runs, so content is never hidden without JS */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-      </head>
       <body>{children}</body>
     </html>
   );

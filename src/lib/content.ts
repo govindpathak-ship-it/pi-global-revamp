@@ -91,14 +91,14 @@ export const industries: Industry[] = [
 ];
 
 export const logos = [
-  { src: asset("/images/logos/logo-1.png"), alt: "OYO" },
-  { src: asset("/images/logos/logo-2.png"), alt: "SpiceJet" },
-  { src: asset("/images/logos/tata-sons_2.png"), alt: "Tata Sons" },
-  { src: asset("/images/logos/logo-4.png"), alt: "Domino's" },
-  { src: asset("/images/logos/logo-5.png"), alt: "CEAT" },
-  { src: asset("/images/logos/logo-6.png"), alt: "PVR INOX" },
-  { src: asset("/images/logos/logo-7.png"), alt: "Biryani Blues" },
-  { src: asset("/images/logos/logo-8.png"), alt: "Khimji Jewellers" },
+  { src: asset("/images/logos/logo-1.webp"), alt: "OYO" },
+  { src: asset("/images/logos/logo-2.webp"), alt: "SpiceJet" },
+  { src: asset("/images/logos/tata-sons_2.webp"), alt: "Tata Sons" },
+  { src: asset("/images/logos/logo-4.webp"), alt: "Domino's" },
+  { src: asset("/images/logos/logo-5.webp"), alt: "CEAT" },
+  { src: asset("/images/logos/logo-6.webp"), alt: "PVR INOX" },
+  { src: asset("/images/logos/logo-7.webp"), alt: "Biryani Blues" },
+  { src: asset("/images/logos/logo-8.webp"), alt: "Khimji Jewellers" },
 ];
 
 export type Agent = {
