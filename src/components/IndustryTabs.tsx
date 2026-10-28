@@ -17,7 +17,7 @@ export function IndustryTabs() {
 
   return (
     <div>
-      <div role="tablist" aria-label="Industries" onKeyDown={onKey} className="mx-auto grid w-full max-w-xl grid-cols-4 gap-1 rounded-full bg-white p-1.5 ring-1 ring-line shadow-[0_4px_16px_rgba(0,41,112,0.08)]">
+      <div role="tablist" aria-label="Industries" onKeyDown={onKey} className="mx-auto grid w-full max-w-xl grid-cols-2 gap-1 rounded-3xl bg-white p-1.5 ring-1 ring-line shadow-[0_4px_16px_rgba(0,41,112,0.08)] sm:grid-cols-4 sm:rounded-full">
         {industries.map((t, i) => (
           <button
             key={t.id}
@@ -28,7 +28,7 @@ export function IndustryTabs() {
             aria-controls={`panel-${t.id}`}
             tabIndex={i === active ? 0 : -1}
             onClick={() => setActive(i)}
-            className={`whitespace-nowrap rounded-full px-1 py-2.5 text-[12.5px] font-semibold sm:px-4 sm:text-sm transition ${i === active ? "bg-navy text-white" : "text-ink hover:bg-ice hover:text-navy"}`}
+            className={`min-h-11 whitespace-nowrap rounded-full px-3 py-2.5 text-[15px] font-semibold sm:px-4 sm:text-sm transition ${i === active ? "bg-navy text-white" : "text-ink hover:bg-ice hover:text-navy"}`}
           >
             {t.label}
           </button>
@@ -36,19 +36,19 @@ export function IndustryTabs() {
       </div>
 
       <div key={ind.id} role="tabpanel" id={`panel-${ind.id}`} aria-labelledby={`tab-${ind.id}`} className="mt-10 grid animate-[fadeUp_.5s_ease] gap-5 lg:grid-cols-12">
-        <div className="relative min-h-[300px] overflow-hidden rounded-3xl bg-ink lg:col-span-5 lg:min-h-[460px]">
+        <div className="relative min-h-[260px] overflow-hidden rounded-3xl bg-ink sm:min-h-[300px] lg:col-span-5 lg:min-h-[460px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={ind.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+          <img src={ind.image} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
           {/* Light bottom-only scrim keeps the label readable without hiding the photo */}
           <div className="absolute inset-0 bg-gradient-to-t from-navy/90 from-0% via-navy/45 via-30% to-transparent to-60%" />
-          <div className="absolute inset-x-0 bottom-0 p-7">
+          <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-aqua">{ind.label}</p>
-            <p className="font-display mt-2 text-2xl font-semibold leading-tight text-white sm:text-3xl">{ind.tagline}</p>
+            <p className="font-display mt-2 text-[1.375rem] font-semibold leading-tight text-white sm:text-3xl">{ind.tagline}</p>
           </div>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:col-span-7">
           {ind.pillars.map((p, i) => (
-            <div key={p.title} className="soft-lift group relative overflow-hidden rounded-3xl bg-white p-7 ring-1 ring-line">
+            <div key={p.title} className="soft-lift group relative overflow-hidden rounded-3xl bg-white p-6 ring-1 ring-line sm:p-7">
               <div className="flex items-center gap-3">
                 <span className="grid h-9 w-9 place-items-center rounded-xl bg-ice font-display text-sm font-semibold text-navy">0{i + 1}</span>
                 <h3 className="font-display text-xl font-semibold text-ink">{p.title}</h3>

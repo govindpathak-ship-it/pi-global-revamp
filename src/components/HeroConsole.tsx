@@ -176,7 +176,7 @@ export function HeroConsole() {
   return (
     <div ref={rootRef} className="relative mx-auto w-full max-w-[520px]">
       <div className="absolute -inset-8 rounded-[2.5rem] bg-gradient-to-br from-pi/30 via-ice to-sky/40 blur-2xl" aria-hidden="true" />
-      <div className="frost sheen-once relative overflow-hidden rounded-[2rem] p-5">
+      <div className="frost sheen-once relative overflow-hidden rounded-[1.75rem] p-4 sm:rounded-[2rem] sm:p-5">
         <div className="flex items-center justify-between">
           <PiLogo className="h-8 w-auto text-ink" />
           <span className="font-mono inline-flex items-center gap-1.5 rounded-full bg-mint/10 px-2.5 py-1 text-[10px] font-medium uppercase text-[#1e7d46] ring-1 ring-mint/30">
@@ -196,7 +196,7 @@ export function HeroConsole() {
         </div>
 
         {/* Animated example conversation — fixed height so nothing below moves. */}
-        <div className="mt-5 rounded-2xl bg-mist/80 p-4 ring-1 ring-line/70" aria-hidden="true">
+        <div className="mt-4 rounded-2xl bg-mist/80 p-3 ring-1 ring-line/70 sm:mt-5 sm:p-4" aria-hidden="true">
           <div key={`h-${scen}`} className="chat-head flex h-5 items-center gap-2 text-[11px] font-semibold text-muted">
             {voice ? (
               <span className="inline-flex shrink-0 items-center gap-1 rounded bg-ice px-1.5 py-0.5 text-navy">
@@ -218,7 +218,7 @@ export function HeroConsole() {
             )}
           </div>
 
-          <div className={`mt-1 h-[232px] transition-opacity duration-400 sm:h-[200px] ${leaving ? "opacity-0" : "opacity-100"}`}>
+          <div className={`mt-1 h-[248px] transition-opacity duration-400 sm:h-[200px] ${leaving ? "opacity-0" : "opacity-100"}`}>
             {voice ? (
               <div className="flex h-full flex-col">
                 {/* Call bar: participants + live waveform */}
@@ -249,7 +249,7 @@ export function HeroConsole() {
                     const text = live ? wordsOf(m.text).slice(0, words).join(" ") : m.text;
                     return (
                       <div key={`${scen}-${i}`} className="msg-in shrink-0">
-                        <p className={`flex gap-2 text-[13px] leading-snug ${live ? "text-ink" : "text-body"}`}>
+                        <p className={`flex gap-2 text-[14px] leading-snug sm:text-[13px] ${live ? "text-ink" : "text-body"}`}>
                           <span className={`mt-[3px] inline-flex h-4 shrink-0 items-center gap-1 rounded px-1 text-[9px] font-bold uppercase tracking-wider ${m.from === "agent" ? "bg-pi/15 text-[#006a9e]" : "bg-navy/10 text-navy"}`}>
                             {m.from === "agent" ? "Pi" : "Caller"}
                             {live && <Bars on n={3} color="currentColor" className="!h-2" />}
@@ -269,9 +269,9 @@ export function HeroConsole() {
                 {shown.map((m, i) => (
                   <div key={`${scen}-${i}`} className="msg-in shrink-0">
                     {m.from === "agent" ? (
-                      <p className="max-w-[85%] rounded-2xl rounded-tl-sm bg-white px-3.5 py-2.5 text-[13px] leading-snug text-ink shadow-sm ring-1 ring-line/60">{m.text}</p>
+                      <p className="max-w-[88%] rounded-2xl rounded-tl-sm bg-white px-3.5 py-2.5 text-[14px] sm:max-w-[85%] sm:text-[13px] leading-snug text-ink shadow-sm ring-1 ring-line/60">{m.text}</p>
                     ) : (
-                      <p className="ml-auto w-fit max-w-[75%] rounded-2xl rounded-tr-sm bg-pi px-3.5 py-2.5 text-[13px] font-semibold leading-snug text-navy">{m.text}</p>
+                      <p className="ml-auto w-fit max-w-[80%] rounded-2xl rounded-tr-sm bg-pi px-3.5 py-2.5 text-[14px] sm:max-w-[75%] sm:text-[13px] font-semibold leading-snug text-navy">{m.text}</p>
                     )}
                   </div>
                 ))}
@@ -288,15 +288,15 @@ export function HeroConsole() {
         </div>
 
         {/* Agents + outcome flows, synced with the active conversation */}
-        <ul className="mt-4 space-y-2.5">
+        <ul className="mt-3 space-y-2 sm:mt-4 sm:space-y-2.5">
           {agents.map((a) => {
             const active = a.id === s.agent;
             const n = active ? lit : 0;
             return (
               <li key={a.id} data-active={active || undefined}
-                className={`agent-card rounded-2xl bg-white p-3.5 ring-1 transition duration-500 ${active ? "ring-[var(--accent)] shadow-[0_10px_30px_-12px_rgba(0,41,112,0.35)]" : "ring-line opacity-70"}`}
+                className={`agent-card rounded-2xl bg-white p-3 ring-1 sm:p-3.5 transition duration-500 ${active ? "ring-[var(--accent)] shadow-[0_10px_30px_-12px_rgba(0,41,112,0.35)]" : "ring-line opacity-70"}`}
                 style={{ ["--accent" as string]: accent[a.id] }}>
-                <div className="flex items-center gap-2 text-[13px] font-semibold text-ink">
+                <div className="flex items-center gap-2 text-[14px] font-semibold text-ink sm:text-[13px]">
                   <span className="relative flex h-2 w-2">
                     {active && <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-60" style={{ background: accent[a.id] }} />}
                     <span className="relative h-2 w-2 rounded-full" style={{ background: accent[a.id] }} />
@@ -304,7 +304,7 @@ export function HeroConsole() {
                   {a.name}
                   {active && voice && <Bars on={!!speaker} n={4} color={accent[a.id]} className="ml-auto" />}
                 </div>
-                <div className="mt-2.5 flex flex-wrap items-center gap-1.5 text-[11px] font-medium text-navy sm:flex-nowrap">
+                <div className="mt-2.5 flex flex-wrap items-center gap-1.5 text-[12px] font-medium sm:text-[11px] text-navy sm:flex-nowrap">
                   {a.flow.map((f, i) => {
                     const on = i < n;
                     return (
@@ -328,6 +328,16 @@ export function HeroConsole() {
         </ul>
       </div>
 
+      {/* Phones: floating chips would overlap the card, so show them as a tidy static row instead. */}
+      <ul className="mt-4 flex flex-wrap justify-center gap-2 sm:hidden" aria-hidden="true">
+        <li className={`inline-flex items-center gap-2 rounded-full bg-navy px-3 py-1.5 text-xs font-semibold text-white transition ${voice ? "ring-2 ring-pi ring-offset-2" : ""}`}>
+          <Bars on={voice && !!speaker} n={4} color="#00BAF2" />
+          <span lang="hi">हिन्दी</span> · English
+        </li>
+        {chips.map((c) => (
+          <li key={c.label} className={`rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-navy ring-1 transition ${c.label === s.channel ? "ring-2 ring-pi" : "ring-line"}`}>{c.label}</li>
+        ))}
+      </ul>
       {chips.map((c) => (
         <span key={c.label} className={`absolute hidden rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-500 sm:inline-flex ${c.cls} ${c.label === s.channel ? "chip-on" : ""}`}>
           {c.label}

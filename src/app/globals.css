@@ -180,3 +180,15 @@ body {
 .soft-lift:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px rgb(0 186 242 / 0.4), 0 18px 44px -18px rgb(0 147 214 / 0.45); }
 
 .status-dot { box-shadow: 0 0 6px currentColor; }
+
+/* ── Mobile: lighter effects, tidy touch scrolling ── */
+@media (max-width: 639px) {
+  .pixel { animation: none; }               /* hundreds of tiles: keep static on phones */
+  .float-slow, .float-slower { animation: none; }
+  .frost { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgb(255 255 255 / 0.96); }
+  .soft-lift:hover { transform: none; }
+}
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { overflow-x: clip; }
