@@ -8,7 +8,7 @@ import { PiLogo } from "./PiLogo";
 // (no real customers, no performance claims). A tiny timer-driven state machine plays them on a loop:
 // voice scenes render as a live call (waveform, timer, word-by-word captions); WhatsApp scenes as a chat.
 
-const accent: Record<string, string> = { sales: "#00BAF2", service: "#3DD68C", operations: "#85EEFC" }; // tuned for the dark console
+const accent: Record<string, string> = { sales: "#00BAF2", service: "#27AE60", operations: "#002970" };
 
 type Msg = { from: "agent" | "user"; text: string; lights?: number };
 type Scenario = {
@@ -92,9 +92,9 @@ function Bars({ on, n = 4, color, className = "" }: { on: boolean; n?: number; c
 }
 
 const chips = [
-  { label: "Voice AI", cls: "float-slow -left-10 top-48" },
-  { label: "Meta Ads", cls: "float-slower -right-4 -top-4" },
-  { label: "RCS", cls: "float-slow -right-6 -bottom-4" },
+  { label: "Voice AI", cls: "float-slow -left-10 top-48 bg-white text-navy ring-1 ring-line shadow-[0_8px_24px_rgba(0,41,112,0.18)]" },
+  { label: "Meta Ads", cls: "float-slower -right-4 -top-4 bg-navy text-white shadow-xl" },
+  { label: "RCS", cls: "float-slow -right-6 -bottom-4 bg-white text-navy ring-1 ring-line shadow-[0_8px_24px_rgba(0,41,112,0.18)]" },
 ];
 
 export function HeroConsole() {
@@ -175,20 +175,13 @@ export function HeroConsole() {
 
   return (
     <div ref={rootRef} className="relative mx-auto w-full max-w-[520px]">
-      {/* Orbital rings + glow behind the console (decorative) */}
-      <div className="pointer-events-none absolute inset-0 -z-0 hidden sm:block" aria-hidden="true">
-        <div className="orbit orbit-spin h-[125%] w-[125%]"><span className="sat" /></div>
-        <div className="orbit orbit-spin-rev h-[150%] w-[150%] border-dashed !border-pi/10"><span className="sat !h-1.5 !w-1.5 !bg-white" /></div>
-      </div>
-      <div className="absolute -inset-8 rounded-[2.5rem] bg-gradient-to-br from-pi/35 via-navy/40 to-aqua/25 blur-3xl" aria-hidden="true" />
-      <div className="glow-border holo relative overflow-hidden rounded-[2rem] bg-[#04163a]/85 p-5 text-white shadow-[0_30px_90px_-20px_rgba(0,186,242,0.45)] ring-1 ring-pi/25 backdrop-blur-xl">
-        <span className="scanlines" aria-hidden="true" />
-        <span className="scan-beam" aria-hidden="true" />
-        <div className="relative z-[3] flex items-center justify-between">
-          <PiLogo className="h-8 w-auto text-white" />
-          <span className="font-mono inline-flex items-center gap-1.5 rounded-full bg-mint/10 px-2.5 py-1 text-[10px] font-medium uppercase text-[#5fe39a] ring-1 ring-mint/40">
-            <span className="relative flex h-1.5 w-1.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-mint opacity-75" /><span className="status-dot relative inline-flex h-1.5 w-1.5 rounded-full bg-[#5fe39a] text-[#5fe39a]" /></span>
-            Agents online
+      <div className="absolute -inset-8 rounded-[2.5rem] bg-gradient-to-br from-pi/30 via-ice to-sky/40 blur-2xl" aria-hidden="true" />
+      <div className="relative overflow-hidden rounded-[2rem] bg-white p-5 shadow-[0_30px_80px_-20px_rgba(0,41,112,0.35)] ring-1 ring-navy/10">
+        <div className="flex items-center justify-between">
+          <PiLogo className="h-8 w-auto text-ink" />
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-mint/10 px-2.5 py-1 text-[11px] font-semibold text-[#1e7d46] ring-1 ring-mint/30">
+            <span className="relative flex h-1.5 w-1.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-mint opacity-75" /><span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-mint" /></span>
+            Agents running
           </span>
         </div>
 
@@ -203,24 +196,24 @@ export function HeroConsole() {
         </div>
 
         {/* Animated example conversation — fixed height so nothing below moves. */}
-        <div className="relative z-[3] mt-5 rounded-2xl bg-white/[0.04] p-4 ring-1 ring-white/10" aria-hidden="true">
-          <div key={`h-${scen}`} className="chat-head flex h-5 items-center gap-2 text-[11px] font-semibold text-white/65">
+        <div className="mt-5 rounded-2xl bg-mist p-4 ring-1 ring-line/70" aria-hidden="true">
+          <div key={`h-${scen}`} className="chat-head flex h-5 items-center gap-2 text-[11px] font-semibold text-muted">
             {voice ? (
-              <span className="inline-flex shrink-0 items-center gap-1 rounded bg-pi/15 px-1.5 py-0.5 font-mono text-[10px] uppercase text-aqua ring-1 ring-pi/30">
+              <span className="inline-flex shrink-0 items-center gap-1 rounded bg-ice px-1.5 py-0.5 text-navy">
                 <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></svg>
                 Voice AI
               </span>
             ) : (
-              <span className="shrink-0 rounded bg-[#25D366]/15 px-1.5 py-0.5 font-mono text-[10px] uppercase text-[#5fe39a] ring-1 ring-[#25D366]/30">WhatsApp</span>
+              <span className="shrink-0 rounded bg-[#25D366]/15 px-1.5 py-0.5 text-[#128c4b]">WhatsApp</span>
             )}
             <span className="min-w-0 truncate">{s.agentName}</span>
             {voice && (
-              <span className={`ml-auto inline-flex shrink-0 items-center gap-1.5 rounded-full px-2 py-0.5 font-mono text-[10px] tabular-nums ring-1 ${connected ? "bg-coral/15 text-[#ff9b9b] ring-coral/40" : "bg-white/5 text-white/65 ring-white/15"}`}>
+              <span className={`ml-auto inline-flex shrink-0 items-center gap-1.5 rounded-full px-2 py-0.5 tabular-nums ring-1 ${connected ? "bg-coral/10 text-[#b42318] ring-coral/30" : "bg-white text-muted ring-line"}`}>
                 <span className="relative flex h-1.5 w-1.5">
                   {connected && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-coral opacity-75" />}
-                  <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${connected ? "bg-coral" : "bg-white/40"}`} />
+                  <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${connected ? "bg-coral" : "bg-muted"}`} />
                 </span>
-                {connected ? <>LIVE · {mmss(secs)}</> : "CONNECTING…"}
+                {connected ? <>Live call · {mmss(secs)}</> : "Connecting…"}
               </span>
             )}
           </div>
@@ -229,23 +222,23 @@ export function HeroConsole() {
             {voice ? (
               <div className="flex h-full flex-col">
                 {/* Call bar: participants + live waveform */}
-                <div className="mt-2 flex items-center gap-2 rounded-xl bg-white/[0.05] px-2.5 py-2 ring-1 ring-pi/20">
-                  <span className={`relative grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-to-br from-pi to-navy text-[11px] font-bold text-white transition ${speaker === "agent" ? "speak-ring" : ""}`} style={{ ["--ring" as string]: "#00BAF2" }}>Pi</span>
+                <div className="mt-2 flex items-center gap-2 rounded-xl bg-white px-2.5 py-2 ring-1 ring-line/60">
+                  <span className={`relative grid h-8 w-8 shrink-0 place-items-center rounded-full bg-navy text-[11px] font-bold text-white transition ${speaker === "agent" ? "speak-ring" : ""}`} style={{ ["--ring" as string]: "#00BAF2" }}>Pi</span>
                   <span className="hidden w-[92px] shrink-0 flex-col leading-tight min-[400px]:flex">
-                    <span className="text-[11px] font-semibold text-white">Pi Agent</span>
-                    <span className="truncate text-[10px] text-white/55">{s.call?.direction} · {s.call?.language}</span>
+                    <span className="text-[11px] font-semibold text-ink">Pi Agent</span>
+                    <span className="truncate text-[10px] text-muted">{s.call?.direction} · {s.call?.language}</span>
                   </span>
                   <span className={`wave mx-1 flex h-7 min-w-0 flex-1 items-center justify-center gap-[3px] overflow-hidden ${speaker ? "wave-on" : ""}`}>
                     {WAVE.map((b, i) => (
                       <span key={i} className="w-[3px] shrink-0 rounded-full transition-colors duration-300"
-                        style={{ height: `${b.h * 100}%`, background: speaker === "user" ? "#85EEFC" : speaker === "agent" ? "#00BAF2" : "rgba(255,255,255,0.18)", color: speaker === "user" ? "#85EEFC" : "#00BAF2", ["--d" as string]: `${b.d}s`, ["--dl" as string]: `${b.dl}s` }} />
+                        style={{ height: `${b.h * 100}%`, background: speaker === "user" ? "#002970" : speaker === "agent" ? "#00BAF2" : "#cfd8e3", ["--d" as string]: `${b.d}s`, ["--dl" as string]: `${b.dl}s` }} />
                     ))}
                   </span>
                   <span className="hidden w-[62px] shrink-0 flex-col items-end leading-tight min-[400px]:flex">
-                    <span className="text-[11px] font-semibold text-white">Customer</span>
-                    <span className="text-[10px] text-white/55">{speaker === "user" ? "Speaking…" : speaker === "agent" ? "Listening" : connected ? "On call" : "Ringing…"}</span>
+                    <span className="text-[11px] font-semibold text-ink">Customer</span>
+                    <span className="text-[10px] text-muted">{speaker === "user" ? "Speaking…" : speaker === "agent" ? "Listening" : connected ? "On call" : "Ringing…"}</span>
                   </span>
-                  <span className={`relative grid h-8 w-8 shrink-0 place-items-center rounded-full bg-ice text-navy transition ${speaker === "user" ? "speak-ring" : ""}`} style={{ ["--ring" as string]: "#85EEFC" }}>
+                  <span className={`relative grid h-8 w-8 shrink-0 place-items-center rounded-full bg-ice text-navy transition ${speaker === "user" ? "speak-ring" : ""}`} style={{ ["--ring" as string]: "#002970" }}>
                     <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6v1H4z" /></svg>
                   </span>
                 </div>
@@ -256,19 +249,19 @@ export function HeroConsole() {
                     const text = live ? wordsOf(m.text).slice(0, words).join(" ") : m.text;
                     return (
                       <div key={`${scen}-${i}`} className="msg-in shrink-0">
-                        <p className={`flex gap-2 text-[13px] leading-snug ${live ? "text-white" : "text-white/70"}`}>
-                          <span className={`mt-[3px] inline-flex h-4 shrink-0 items-center gap-1 rounded px-1 text-[9px] font-bold uppercase tracking-wider font-mono ${m.from === "agent" ? "bg-pi/20 text-aqua" : "bg-white/10 text-white/85"}`}>
+                        <p className={`flex gap-2 text-[13px] leading-snug ${live ? "text-ink" : "text-body"}`}>
+                          <span className={`mt-[3px] inline-flex h-4 shrink-0 items-center gap-1 rounded px-1 text-[9px] font-bold uppercase tracking-wider ${m.from === "agent" ? "bg-pi/15 text-[#006a9e]" : "bg-navy/10 text-navy"}`}>
                             {m.from === "agent" ? "Pi" : "Caller"}
                             {live && <Bars on n={3} color="currentColor" className="!h-2" />}
                           </span>
-                          <span className={m.from === "user" ? "font-medium text-sky" : ""}>
-                            {text}{live && <span className="caret ml-0.5 inline-block h-3.5 w-[2px] translate-y-0.5 bg-pi shadow-[0_0_8px_#00baf2]" />}
+                          <span className={m.from === "user" ? "font-medium text-navy" : ""}>
+                            {text}{live && <span className="caret ml-0.5 inline-block h-3.5 w-[2px] translate-y-0.5 bg-pi" />}
                           </span>
                         </p>
                       </div>
                     );
                   })}
-                  {!connected && <p className="msg-in shrink-0 text-center font-mono text-[11px] font-medium uppercase text-aqua/80">{s.call?.direction === "Inbound" ? "Incoming call — Pi Agent answering…" : "Pi Agent is calling the customer…"}</p>}
+                  {!connected && <p className="msg-in shrink-0 text-center text-[12px] font-medium text-muted">{s.call?.direction === "Inbound" ? "Incoming call — Pi Agent answering…" : "Pi Agent is calling the customer…"}</p>}
                 </div>
               </div>
             ) : (
@@ -276,16 +269,16 @@ export function HeroConsole() {
                 {shown.map((m, i) => (
                   <div key={`${scen}-${i}`} className="msg-in shrink-0">
                     {m.from === "agent" ? (
-                      <p className="max-w-[85%] rounded-2xl rounded-tl-sm bg-white/[0.08] px-3.5 py-2.5 text-[13px] leading-snug text-white ring-1 ring-white/10">{m.text}</p>
+                      <p className="max-w-[85%] rounded-2xl rounded-tl-sm bg-white px-3.5 py-2.5 text-[13px] leading-snug text-ink shadow-sm ring-1 ring-line/60">{m.text}</p>
                     ) : (
-                      <p className="ml-auto w-fit max-w-[75%] rounded-2xl rounded-tr-sm bg-pi px-3.5 py-2.5 text-[13px] font-semibold leading-snug text-navy shadow-[0_0_18px_rgba(0,186,242,0.45)]">{m.text}</p>
+                      <p className="ml-auto w-fit max-w-[75%] rounded-2xl rounded-tr-sm bg-pi px-3.5 py-2.5 text-[13px] font-semibold leading-snug text-navy">{m.text}</p>
                     )}
                   </div>
                 ))}
                 {typing && (
                   <div key={`t-${scen}-${count}`} className="msg-in shrink-0">
-                    <div className="typing flex w-14 items-center justify-center gap-1 rounded-2xl rounded-tl-sm bg-white/[0.08] px-3 py-3 ring-1 ring-white/10">
-                      <span className="h-1.5 w-1.5 rounded-full bg-aqua" /><span className="h-1.5 w-1.5 rounded-full bg-aqua" /><span className="h-1.5 w-1.5 rounded-full bg-aqua" />
+                    <div className="typing flex w-14 items-center justify-center gap-1 rounded-2xl rounded-tl-sm bg-white px-3 py-3 ring-1 ring-line/60">
+                      <span className="h-1.5 w-1.5 rounded-full bg-navy" /><span className="h-1.5 w-1.5 rounded-full bg-navy" /><span className="h-1.5 w-1.5 rounded-full bg-navy" />
                     </div>
                   </div>
                 )}
@@ -295,34 +288,34 @@ export function HeroConsole() {
         </div>
 
         {/* Agents + outcome flows, synced with the active conversation */}
-        <ul className="relative z-[3] mt-4 space-y-2.5">
+        <ul className="mt-4 space-y-2.5">
           {agents.map((a) => {
             const active = a.id === s.agent;
             const n = active ? lit : 0;
             return (
               <li key={a.id} data-active={active || undefined}
-                className={`agent-card rounded-2xl p-3.5 ring-1 transition duration-500 ${active ? "bg-white/[0.07] ring-[var(--accent)] shadow-[0_0_28px_-8px_var(--accent)]" : "bg-white/[0.03] ring-white/10 opacity-60"}`}
+                className={`agent-card rounded-2xl bg-white p-3.5 ring-1 transition duration-500 ${active ? "ring-[var(--accent)] shadow-[0_10px_30px_-12px_rgba(0,41,112,0.35)]" : "ring-line opacity-70"}`}
                 style={{ ["--accent" as string]: accent[a.id] }}>
-                <div className="flex items-center gap-2 text-[13px] font-semibold text-white">
+                <div className="flex items-center gap-2 text-[13px] font-semibold text-ink">
                   <span className="relative flex h-2 w-2">
                     {active && <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-60" style={{ background: accent[a.id] }} />}
-                    <span className="status-dot relative h-2 w-2 rounded-full" style={{ background: accent[a.id], color: accent[a.id] }} />
+                    <span className="relative h-2 w-2 rounded-full" style={{ background: accent[a.id] }} />
                   </span>
                   {a.name}
                   {active && voice && <Bars on={!!speaker} n={4} color={accent[a.id]} className="ml-auto" />}
                 </div>
-                <div className="mt-2.5 flex flex-wrap items-center gap-1.5 text-[11px] font-medium text-white/75 sm:flex-nowrap">
+                <div className="mt-2.5 flex flex-wrap items-center gap-1.5 text-[11px] font-medium text-navy sm:flex-nowrap">
                   {a.flow.map((f, i) => {
                     const on = i < n;
                     return (
                       <span key={f} className="contents">
-                        <span className={`step whitespace-nowrap rounded-md px-2 py-1 ring-1 transition-all duration-500 ${on ? "step-on font-semibold ring-[var(--accent)] shadow-[0_0_12px_-4px_var(--accent)]" : "bg-white/[0.04] ring-white/10"}`}>
-                          {on && <span className="mr-1" style={{ color: accent[a.id] }}>✓</span>}
+                        <span className={`step whitespace-nowrap rounded-md px-2 py-1 ring-1 transition-all duration-500 ${on ? "step-on font-semibold ring-[var(--accent)]" : "bg-ice-2 ring-ice"}`}>
+                          {on && <span className="mr-1" style={{ color: accent[a.id] === "#00BAF2" ? "#007DB8" : accent[a.id] }}>✓</span>}
                           {f}
                         </span>
                         {i < 2 && (
-                          <span className="relative hidden h-px min-w-3 flex-1 overflow-hidden bg-white/15 sm:block">
-                            <span className={`absolute inset-0 origin-left transition-transform duration-700 ease-out ${i + 1 < n ? "scale-x-100" : "scale-x-0"}`} style={{ background: accent[a.id], boxShadow: `0 0 6px ${accent[a.id]}` }} />
+                          <span className="relative hidden h-px min-w-3 flex-1 overflow-hidden bg-line sm:block">
+                            <span className={`absolute inset-0 origin-left transition-transform duration-700 ease-out ${i + 1 < n ? "scale-x-100" : "scale-x-0"}`} style={{ background: accent[a.id] }} />
                           </span>
                         )}
                       </span>
@@ -336,12 +329,12 @@ export function HeroConsole() {
       </div>
 
       {chips.map((c) => (
-        <span key={c.label} className={`font-mono absolute z-[4] hidden rounded-full bg-[#06204f]/85 px-3 py-1.5 text-[11px] font-medium uppercase text-white ring-1 ring-pi/40 shadow-[0_0_20px_-6px_rgba(0,186,242,0.7)] backdrop-blur transition-all duration-500 sm:inline-flex ${c.cls} ${c.label === s.channel ? "chip-on" : ""}`}>
+        <span key={c.label} className={`absolute hidden rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-500 sm:inline-flex ${c.cls} ${c.label === s.channel ? "chip-on" : ""}`}>
           {c.label}
         </span>
       ))}
       {/* Voice-flavoured chip in the bottom-left corner: waveform pulses while a voice scene is live. */}
-      <span className={`float-slower absolute z-[4] -left-12 -bottom-3 hidden items-center gap-2 rounded-full bg-[#06204f]/85 px-3 py-1.5 text-xs font-semibold text-white ring-1 ring-pi/40 shadow-[0_0_20px_-6px_rgba(0,186,242,0.7)] backdrop-blur transition-all duration-500 sm:inline-flex ${voice ? "chip-on" : ""}`}>
+      <span className={`float-slower absolute -left-12 -bottom-3 hidden items-center gap-2 rounded-full bg-navy px-3 py-1.5 text-xs font-semibold text-white shadow-xl transition-all duration-500 sm:inline-flex ${voice ? "chip-on" : ""}`}>
         <Bars on={voice && !!speaker} n={5} color="#00BAF2" />
         <span lang="hi">हिन्दी</span> · English
       </span>
