@@ -24,16 +24,17 @@ export function ContactButton({
 }: {
   children: React.ReactNode;
   className?: string;
-  variant?: "primary" | "cyan" | "outline" | "light" | "ghost";
+  variant?: "primary" | "cyan" | "outline" | "light" | "ghost" | "neon";
 }) {
   const { open } = useContext(Ctx);
   // Paytm-style pill buttons (paytm.com: navy #002970 pills, 16px/600, hover inverts to white)
   const styles = {
-    primary: "bg-navy text-white ring-1 ring-navy hover:bg-white hover:text-navy",
-    cyan: "bg-pi text-navy hover:bg-white",
+    primary: "bg-navy text-white ring-1 ring-navy hover:bg-white hover:text-navy hover:shadow-[0_0_24px_rgba(0,186,242,0.45)]",
+    neon: "neon-btn bg-pi text-navy hover:bg-white",
+    cyan: "neon-btn bg-pi text-navy hover:bg-white",
     outline: "bg-white text-navy ring-1 ring-navy hover:bg-navy hover:text-white",
     light: "bg-white text-navy hover:bg-ice",
-    ghost: "bg-transparent text-white ring-1 ring-white/40 hover:bg-white/10",
+    ghost: "bg-white/5 text-white ring-1 ring-pi/50 backdrop-blur hover:bg-white/10 hover:ring-pi",
 }[variant];
   return (
     <button
