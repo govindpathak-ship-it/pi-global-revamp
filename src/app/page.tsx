@@ -14,8 +14,8 @@ import { footerLinks, hero, khimjiCase, logos, outcomes, paytmCase, segments, so
 
 function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
   return (
-    <p className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ring-1 ${dark ? "bg-white/10 text-aqua ring-white/20" : "bg-ice text-navy ring-pi/30"}`}>
-      <span className="h-1.5 w-1.5 rounded-full bg-current" />
+    <p className={`font-mono inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] ring-1 ${dark ? "bg-white/10 text-aqua ring-white/20" : "bg-ice text-navy ring-pi/30"}`}>
+      <span className="status-dot h-1.5 w-1.5 rounded-full bg-current" />
       {children}
     </p>
   );
@@ -32,6 +32,7 @@ export default function Home() {
           <Pixels palette={["#00baf2", "#96d8ee", "#e0f5fd", "#85eefc"]} maxOpacity={0.3} className="opacity-60 [mask-image:radial-gradient(ellipse_at_75%_25%,#000_5%,transparent_65%)]" />
           <div className="grid-lines absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,#000,transparent)]" aria-hidden="true" />
           <div className="absolute -top-40 left-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-pi/20 blur-[140px]" aria-hidden="true" />
+          <div className="absolute right-[-10%] top-1/4 -z-10 hidden h-[520px] w-[520px] rounded-full bg-[radial-gradient(closest-side,rgb(0_186_242/0.18),transparent)] lg:block" aria-hidden="true" />
           <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-5 lg:grid-cols-12 lg:px-8">
             <div className="min-w-0 lg:col-span-7">
               <div data-reveal><Eyebrow>{hero.eyebrow}</Eyebrow></div>
@@ -56,7 +57,7 @@ export default function Home() {
                   <div key={l}>
                     <dt className="sr-only">{l}</dt>
                     <dd className="font-display text-2xl font-bold text-navy sm:text-3xl">{v}</dd>
-                    <dd className="mt-1 text-xs text-muted sm:text-sm">{l}</dd>
+                    <dd className="font-mono mt-1.5 text-[10px] uppercase text-muted sm:text-[11px]">{l}</dd>
                   </div>
                 ))}
               </dl>
@@ -80,7 +81,7 @@ export default function Home() {
             <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {outcomes.map((o, i) => (
                 <li key={o.title} data-reveal style={{ ["--d" as string]: `${i * 60}ms` }}>
-                  <a href="#agents" className="group relative grid h-full grid-cols-[auto_1fr] items-start gap-x-4 overflow-hidden rounded-3xl bg-white p-5 sm:flex sm:flex-col sm:p-7 ring-1 ring-line/70 shadow-[0_4px_20px_rgba(0,41,112,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-24px_rgba(0,41,114,0.35)]">
+                  <a href="#agents" className="group relative grid h-full grid-cols-[auto_1fr] items-start gap-x-4 overflow-hidden rounded-3xl bg-white p-5 sm:flex sm:flex-col sm:p-7 ring-1 ring-line/70 shadow-[0_4px_20px_rgba(0,41,112,0.06)] soft-lift">
                     <span className="row-span-2 grid h-12 w-12 place-items-center rounded-2xl bg-ice-2 ring-1 ring-ice transition group-hover:bg-ice sm:h-14 sm:w-14">
                       <img src={asset(`/images/icons/${o.icon}`)} alt="" className="h-8 w-8" />
                     </span>
@@ -173,32 +174,32 @@ export default function Home() {
         </section>
 
         {/* WHY PAYTM */}
-        <section id="why-paytm" className="relative isolate overflow-hidden bg-navy py-24 text-white sm:py-32">
-          <Pixels cols={30} rows={18} density={0.18} maxOpacity={0.25} className="-z-10 opacity-60 [mask-image:radial-gradient(ellipse_at_10%_0%,#000_0%,transparent_60%)]" />
+        <section id="why-paytm" className="relative isolate overflow-hidden bg-gradient-to-b from-ice-2 to-white py-24 text-ink sm:py-32">
+          <div className="grid-lines absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_15%_0%,#000,transparent_65%)]" aria-hidden="true" />
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div data-reveal className="max-w-3xl">
-              <Eyebrow dark>Why Paytm</Eyebrow>
-              <h2 className="font-display mt-5 text-[2rem] font-bold leading-[1.1] text-white sm:text-[2.5rem] lg:text-5xl">
-                Proven at scale. <span className="text-pi">Built for our markets.</span>
+              <Eyebrow>Why Paytm</Eyebrow>
+              <h2 className="font-display mt-5 text-[2rem] font-bold leading-[1.1] text-ink sm:text-[2.5rem] lg:text-5xl">
+                Proven at scale. <span className="text-pi-strong">Built for our markets.</span>
               </h2>
             </div>
             <div className="mt-14 grid gap-5 lg:grid-cols-12">
-              <div data-reveal className="relative overflow-hidden rounded-[2rem] bg-pi p-8 text-navy sm:p-10 lg:col-span-7 lg:row-span-2">
+              <div data-reveal className="soft-lift relative overflow-hidden rounded-[2rem] bg-pi p-8 text-navy shadow-[0_24px_60px_-28px_rgba(0,147,214,0.6)] sm:p-10 lg:col-span-7 lg:row-span-2">
                 <Pixels palette={["#ffffff", "#85eefc", "#002970"]} cols={14} rows={10} size={48} density={0.25} maxOpacity={0.25} className="opacity-60 [mask-image:linear-gradient(to_left,#000,transparent)]" />
                 <div className="relative flex h-full flex-col">
-                  <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-navy"><Bolt className="h-4 w-4" /> AI Agents</p>
+                  <p className="font-mono inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-navy"><Bolt className="h-4 w-4" /> AI Agents</p>
                   <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
                     <div>
                       <p className="font-display text-6xl font-semibold sm:text-7xl"><Counter value="60,000" /></p>
-                      <p className="mt-2 text-white/80">AI Calls a day</p>
+                      <p className="mt-2 text-navy/80">AI Calls a day</p>
                     </div>
                     <div>
                       <p className="font-display text-6xl font-semibold sm:text-7xl">1 Trillion+</p>
-                      <p className="mt-2 text-white/80">Tokens consumed each month</p>
+                      <p className="mt-2 text-navy/80">Tokens consumed each month</p>
                     </div>
                     <div className="border-t border-navy/20 pt-8 sm:col-span-2">
                       <p className="font-display text-6xl font-semibold sm:text-7xl"><Counter value="100+" /></p>
-                      <p className="mt-2 text-white/80">Voice AI and Chat AI Agents</p>
+                      <p className="mt-2 text-navy/80">Voice AI and Chat AI Agents</p>
                     </div>
                   </div>
                   <p className="mt-auto pt-10 text-lg font-medium leading-relaxed text-navy sm:max-w-lg">
@@ -206,20 +207,20 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div data-reveal style={{ ["--d" as string]: "80ms" }} className="rounded-[2rem] bg-white/[0.07] p-8 ring-1 ring-white/15 lg:col-span-5">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-pi/15 text-pi ring-1 ring-pi/40"><Layers /></span>
-                <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-pi">Robust</p>
-                <h3 className="font-display mt-2 text-2xl font-semibold">Infrastructure — the power behind every message</h3>
-                <p className="mt-3 text-white/80">Powered by Meta BSP status, Google/AWS partnerships, and our own telecom network, we provide the ultimate CPaaS layer for every conversation.</p>
+              <div data-reveal style={{ ["--d" as string]: "80ms" }} className="soft-lift rounded-[2rem] bg-white p-8 ring-1 ring-line shadow-[0_4px_20px_rgba(0,41,112,0.06)] lg:col-span-5">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-ice text-pi-ink ring-1 ring-pi/30"><Layers /></span>
+                <p className="font-mono mt-6 text-[11px] font-medium uppercase tracking-[0.16em] text-pi-ink">Robust</p>
+                <h3 className="font-display mt-2 text-2xl font-semibold text-ink">Infrastructure — the power behind every message</h3>
+                <p className="mt-3 text-body">Powered by Meta BSP status, Google/AWS partnerships, and our own telecom network, we provide the ultimate CPaaS layer for every conversation.</p>
               </div>
-              <div data-reveal style={{ ["--d" as string]: "160ms" }} className="rounded-[2rem] bg-white/[0.07] p-8 ring-1 ring-white/15 lg:col-span-5">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-mint/15 text-[#5fd394] ring-1 ring-mint/40"><Shield /></span>
-                <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-[#5fd394]">Sovereign</p>
-                <h3 className="font-display mt-2 text-2xl font-semibold">Sovereign AI built for India and the Middle East</h3>
-                <p className="mt-3 text-white/80">DPDP-compliant by design with native Hindi and Arabic support, our AI is custom-built for the regulatory and operational realities of our markets.</p>
+              <div data-reveal style={{ ["--d" as string]: "160ms" }} className="soft-lift rounded-[2rem] bg-white p-8 ring-1 ring-line shadow-[0_4px_20px_rgba(0,41,112,0.06)] lg:col-span-5">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-mint/10 text-[#1e7d46] ring-1 ring-mint/30"><Shield /></span>
+                <p className="font-mono mt-6 text-[11px] font-medium uppercase tracking-[0.16em] text-[#1e7d46]">Sovereign</p>
+                <h3 className="font-display mt-2 text-2xl font-semibold text-ink">Sovereign AI built for India and the Middle East</h3>
+                <p className="mt-3 text-body">DPDP-compliant by design with native Hindi and Arabic support, our AI is custom-built for the regulatory and operational realities of our markets.</p>
                 <ul className="mt-5 flex flex-wrap gap-2 text-sm">
                   {["DPDP-compliant", "हिन्दी · Hindi", "العربية · Arabic"].map((c) => (
-                    <li key={c} className="rounded-full bg-white/10 px-3 py-1 text-white ring-1 ring-white/20">{c}</li>
+                    <li key={c} className="rounded-full bg-ice-2 px-3 py-1 text-navy ring-1 ring-ice">{c}</li>
                   ))}
                 </ul>
               </div>

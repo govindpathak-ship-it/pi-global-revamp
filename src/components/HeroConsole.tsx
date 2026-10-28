@@ -176,12 +176,12 @@ export function HeroConsole() {
   return (
     <div ref={rootRef} className="relative mx-auto w-full max-w-[520px]">
       <div className="absolute -inset-8 rounded-[2.5rem] bg-gradient-to-br from-pi/30 via-ice to-sky/40 blur-2xl" aria-hidden="true" />
-      <div className="relative overflow-hidden rounded-[2rem] bg-white p-5 shadow-[0_30px_80px_-20px_rgba(0,41,112,0.35)] ring-1 ring-navy/10">
+      <div className="frost sheen-once relative overflow-hidden rounded-[2rem] p-5">
         <div className="flex items-center justify-between">
           <PiLogo className="h-8 w-auto text-ink" />
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-mint/10 px-2.5 py-1 text-[11px] font-semibold text-[#1e7d46] ring-1 ring-mint/30">
-            <span className="relative flex h-1.5 w-1.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-mint opacity-75" /><span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-mint" /></span>
-            Agents running
+          <span className="font-mono inline-flex items-center gap-1.5 rounded-full bg-mint/10 px-2.5 py-1 text-[10px] font-medium uppercase text-[#1e7d46] ring-1 ring-mint/30">
+            <span className="relative flex h-1.5 w-1.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-mint opacity-75" /><span className="status-dot relative inline-flex h-1.5 w-1.5 rounded-full bg-mint text-mint" /></span>
+            Agents online
           </span>
         </div>
 
@@ -196,7 +196,7 @@ export function HeroConsole() {
         </div>
 
         {/* Animated example conversation — fixed height so nothing below moves. */}
-        <div className="mt-5 rounded-2xl bg-mist p-4 ring-1 ring-line/70" aria-hidden="true">
+        <div className="mt-5 rounded-2xl bg-mist/80 p-4 ring-1 ring-line/70" aria-hidden="true">
           <div key={`h-${scen}`} className="chat-head flex h-5 items-center gap-2 text-[11px] font-semibold text-muted">
             {voice ? (
               <span className="inline-flex shrink-0 items-center gap-1 rounded bg-ice px-1.5 py-0.5 text-navy">

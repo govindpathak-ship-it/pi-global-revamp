@@ -48,7 +48,7 @@ export function IndustryTabs() {
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:col-span-7">
           {ind.pillars.map((p, i) => (
-            <div key={p.title} className="group relative overflow-hidden rounded-3xl bg-white p-7 ring-1 ring-line transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-18px_rgba(0,41,112,0.3)]">
+            <div key={p.title} className="soft-lift group relative overflow-hidden rounded-3xl bg-white p-7 ring-1 ring-line">
               <div className="flex items-center gap-3">
                 <span className="grid h-9 w-9 place-items-center rounded-xl bg-ice font-display text-sm font-semibold text-navy">0{i + 1}</span>
                 <h3 className="font-display text-xl font-semibold text-ink">{p.title}</h3>
