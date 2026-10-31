@@ -454,7 +454,7 @@ body { overflow-x: clip; }
 @keyframes menuSpin { from { transform: rotate(-90deg); } to { transform: none; } }
 
 /* Full-screen glass menu: ripples open from the button (top-right), items stagger in. */
-:root { --menu-bg: rgb(255 255 255 / 0.9); }
+:root { --menu-bg: rgb(255 255 255 / 0.96); }
 :root[data-theme="dark"] { --menu-bg: rgb(6 13 31 / 0.93); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme]) { --menu-bg: rgb(6 13 31 / 0.93); } }
 .menu-full {
