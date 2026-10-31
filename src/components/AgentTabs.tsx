@@ -52,7 +52,7 @@ export function AgentTabs() {
         id={`agent-panel-${a.id}`}
         aria-labelledby={`agent-tab-${a.id}`}
         style={{ ["--accent" as string]: a.accent }}
-        className="relative animate-[fadeUp_.5s_ease] overflow-hidden rounded-[2rem] bg-deep p-6 text-white sm:p-10 lg:col-span-8"
+        className="panel relative animate-[fadeUp_.5s_ease] overflow-hidden rounded-[2rem] bg-deep p-6 text-white sm:p-10 lg:col-span-8"
       >
         <div className="pointer-events-none absolute -top-32 -right-24 h-80 w-80 hidden rounded-full opacity-25 blur-3xl sm:block" style={{ background: a.accent }} />
         <div className="grid-lines pointer-events-none absolute inset-0" style={{ ["--grid" as string]: "rgb(255 255 255 / 0.05)" }} />

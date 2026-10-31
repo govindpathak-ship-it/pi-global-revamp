@@ -28,15 +28,15 @@ export default function Home() {
       <Header />
       <main id="main">
         {/* HERO */}
-        <section id="top" className="relative isolate overflow-hidden bg-gradient-to-b from-ice-2 via-surface to-surface pt-24 pb-16 text-ink sm:pt-40 sm:pb-24 lg:pb-32">
-          <Pixels palette={["#00baf2", "#96d8ee", "#e0f5fd", "#85eefc"]} maxOpacity={0.3} className="hidden opacity-60 dark:opacity-15 sm:block [mask-image:radial-gradient(ellipse_at_75%_25%,#000_5%,transparent_65%)]" />
+        <section id="top" className="relative isolate overflow-hidden bg-gradient-to-b from-ice-2 via-surface to-surface pt-[calc(6rem+env(safe-area-inset-top))] pb-16 text-ink dark:from-[#0b1938] dark:via-page dark:to-page sm:pt-40 sm:pb-24 lg:pb-32">
+          <Pixels palette={["#00baf2", "#96d8ee", "#e0f5fd", "#85eefc"]} maxOpacity={0.3} className="hidden opacity-60 dark:opacity-[0.07] sm:block [mask-image:radial-gradient(ellipse_at_75%_25%,#000_5%,transparent_65%)]" />
           <div className="grid-lines absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,#000,transparent)]" aria-hidden="true" />
-          <div className="absolute -top-40 left-1/2 -z-10 hidden h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-pi/20 blur-[140px] sm:block" aria-hidden="true" />
+          <div className="absolute -top-40 left-1/2 -z-10 hidden h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-pi/20 blur-[140px] dark:bg-pi/[0.06] sm:block" aria-hidden="true" />
           {/* Phones: same soft glow from a plain gradient — a 140px blur is very costly on mobile GPUs */}
-          <div className="absolute -top-24 left-1/2 -z-10 h-[460px] w-[640px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(0_186_242/0.16),transparent)] sm:hidden" aria-hidden="true" />
-          <div className="absolute right-[-10%] top-1/4 -z-10 hidden h-[520px] w-[520px] rounded-full bg-[radial-gradient(closest-side,rgb(0_186_242/0.18),transparent)] lg:block" aria-hidden="true" />
+          <div className="absolute -top-24 left-1/2 -z-10 h-[460px] w-[640px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(0_186_242/0.16),transparent)] dark:opacity-40 sm:hidden" aria-hidden="true" />
+          <div className="absolute right-[-10%] top-1/4 -z-10 hidden h-[520px] w-[520px] rounded-full bg-[radial-gradient(closest-side,rgb(0_186_242/0.18),transparent)] dark:opacity-60 lg:block" aria-hidden="true" />
           <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 sm:gap-16 lg:grid-cols-12 lg:px-8">
-            <div className="min-w-0 lg:col-span-7">
+            <div className="flex min-h-[calc(100svh-7rem-env(safe-area-inset-top))] min-w-0 flex-col justify-center sm:block sm:min-h-0 lg:col-span-7">
               <div data-reveal><Eyebrow>{hero.eyebrow}</Eyebrow></div>
               <h1 data-reveal style={{ ["--d" as string]: "80ms" }} className="font-display mt-6 text-[clamp(2.25rem,9.6vw,2.75rem)] leading-[1.06] font-bold text-balance text-ink sm:text-6xl lg:text-[4.5rem]">
                 {hero.titleA}
@@ -160,8 +160,8 @@ export default function Home() {
             </div>
             <ul className="mt-14 grid gap-5 lg:grid-cols-3">
               {segments.map((s, i) => (
-                <li key={s.title} data-reveal style={{ ["--d" as string]: `${i * 90}ms` }} className="group relative isolate flex min-h-[280px] flex-col overflow-hidden rounded-[2rem] bg-deep p-6 text-white sm:p-8 lg:min-h-[380px] text-white">
-                  <img loading="lazy" decoding="async" src={asset("/images/segments-bg.webp")} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-70" style={{ objectPosition: ["20% 30%", "60% 50%", "90% 80%"][i] }} />
+                <li key={s.title} data-reveal style={{ ["--d" as string]: `${i * 90}ms` }} className="group relative isolate flex min-h-[280px] flex-col overflow-hidden panel rounded-[2rem] bg-deep p-6 text-white sm:p-8 lg:min-h-[380px] text-white">
+                  <img loading="lazy" decoding="async" src={asset("/images/segments-bg.webp")} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-70 dark:opacity-[0.22] dark:group-hover:opacity-35" style={{ objectPosition: ["20% 30%", "60% 50%", "90% 80%"][i] }} />
                   <div className="absolute inset-0 -z-10 bg-gradient-to-t from-deep via-deep/85 to-deep/30" />
                   <span className="font-display text-sm font-semibold text-white/70">0{i + 1}</span>
                   <div className="mt-auto">
@@ -186,8 +186,8 @@ export default function Home() {
               </h2>
             </div>
             <div className="mt-14 grid gap-5 lg:grid-cols-12">
-              <div data-reveal className="soft-lift relative overflow-hidden on-pi rounded-[2rem] bg-pi p-6 text-navy shadow-[0_24px_60px_-28px_rgba(0,147,214,0.6)] sm:p-10 lg:col-span-7 lg:row-span-2">
-                <Pixels palette={["#ffffff", "#85eefc", "#002970"]} cols={14} rows={10} size={48} density={0.25} maxOpacity={0.25} className="opacity-60 [mask-image:linear-gradient(to_left,#000,transparent)]" />
+              <div data-reveal className="soft-lift pi-card relative overflow-hidden on-pi rounded-[2rem] bg-pi p-6 text-navy shadow-[0_24px_60px_-28px_rgba(0,147,214,0.6)] sm:p-10 lg:col-span-7 lg:row-span-2">
+                <Pixels palette={["#ffffff", "#85eefc", "#002970"]} cols={14} rows={10} size={48} density={0.25} maxOpacity={0.25} className="opacity-60 dark:opacity-20 [mask-image:linear-gradient(to_left,#000,transparent)]" />
                 <div className="relative flex h-full flex-col">
                   <p className="font-mono inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-navy"><Bolt className="h-4 w-4" /> AI Agents</p>
                   <div className="mt-8 grid gap-x-10 gap-y-7 sm:mt-10 lg:grid-cols-2">
@@ -262,8 +262,8 @@ export default function Home() {
                 </div>
               </article>
               {/* Khimji */}
-              <article data-reveal style={{ ["--d" as string]: "100ms" }} className="relative isolate flex min-h-[520px] flex-col overflow-hidden rounded-[2rem] bg-deep text-white sm:min-h-[560px]">
-                <img loading="lazy" decoding="async" src={asset("/images/case/khimji.webp")} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover object-top opacity-80" />
+              <article data-reveal style={{ ["--d" as string]: "100ms" }} className="relative isolate flex min-h-[520px] flex-col overflow-hidden rounded-[2rem] bg-deep text-white panel sm:min-h-[560px]">
+                <img loading="lazy" decoding="async" src={asset("/images/case/khimji.webp")} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover object-top opacity-80 dark:opacity-60" />
                 <div className="absolute inset-0 -z-10 bg-gradient-to-t from-deep via-deep/80 to-deep/0" />
                 <div className="m-6 self-start rounded-xl bg-surface px-4 py-2.5 sm:m-8">
                   <img loading="lazy" decoding="async" src={asset("/images/case/logo-khimji.png")} alt="Khimji Jewellers" className="h-6 w-auto" />
@@ -287,8 +287,8 @@ export default function Home() {
 
         {/* CTA */}
         <section id="contact" className="px-5 pb-16 sm:pb-24 lg:px-8">
-          <div data-reveal className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-deep px-6 py-12 text-white sm:rounded-[2.5rem] sm:px-14 sm:py-24">
-            <Pixels cols={28} rows={10} density={0.3} maxOpacity={0.45} className="-z-10 opacity-70 dark:opacity-30 [mask-image:linear-gradient(to_left,#000,transparent_70%)]" />
+          <div data-reveal className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-deep panel px-6 py-12 text-white sm:rounded-[2.5rem] sm:px-14 sm:py-24">
+            <Pixels cols={28} rows={10} density={0.3} maxOpacity={0.45} className="-z-10 opacity-70 dark:opacity-[0.12] [mask-image:linear-gradient(to_left,#000,transparent_70%)]" />
             <div className="grid items-center gap-10 lg:grid-cols-12">
               <div className="lg:col-span-8">
                 <h2 className="font-display text-[clamp(1.75rem,7.6vw,2rem)] font-bold leading-[1.12] text-balance text-white sm:text-[2.5rem] lg:text-5xl">Ready to power-up with Pi?</h2>
@@ -304,7 +304,7 @@ export default function Home() {
       </main>
 
       {/* FOOTER */}
-      <footer className="border-t border-line bg-surface text-ink">
+      <footer className="border-t border-line bg-surface pb-[env(safe-area-inset-bottom)] text-ink dark:bg-page">
         <div className="mx-auto max-w-7xl px-5 py-12 sm:py-16 lg:px-8">
           <div className="flex flex-col justify-between gap-10 md:flex-row md:items-start">
             <div>
@@ -337,7 +337,7 @@ export default function Home() {
             </ul>
           </div>
         </div>
-        <div aria-hidden="true"><div className="h-2 bg-pi" /><div className="h-2 bg-deep" /></div>
+        <div aria-hidden="true"><div className="h-2 bg-pi dark:h-px dark:bg-pi/60" /><div className="h-2 bg-deep dark:hidden" /></div>
       </footer>
     </ContactProvider>
   );

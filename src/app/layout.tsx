@@ -23,9 +23,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#002970" },
-    { media: "(prefers-color-scheme: dark)", color: "#08152f" },
+    { media: "(prefers-color-scheme: dark)", color: "#060d1f" },
   ],
   colorScheme: "light dark",
+  viewportFit: "cover",
 };
 
 // Runs before first paint: saved choice wins, else the system setting. Never hides content.

@@ -29,10 +29,10 @@ export function ContactButton({
   const { open } = useContext(Ctx);
   // Paytm-style pill buttons (paytm.com: navy #002970 pills, 16px/600, hover inverts to white)
   const styles = {
-    primary: "bg-deep text-white ring-1 ring-navy hover:bg-surface hover:text-navy",
+    primary: "bg-deep text-white ring-1 ring-navy hover:bg-surface hover:text-navy dark:bg-pi dark:text-[#002970] dark:ring-0 dark:shadow-[0_8px_24px_-10px_rgb(0_186_242/0.45)] dark:hover:bg-aqua dark:hover:text-[#002970]",
     cyan: "on-pi bg-pi text-navy hover:bg-white",
     outline: "bg-surface text-navy ring-1 ring-navy hover:bg-deep hover:text-white",
-    light: "bg-surface text-navy hover:bg-ice",
+    light: "bg-surface text-navy hover:bg-ice dark:bg-white/[0.06] dark:text-white dark:ring-1 dark:ring-white/15 dark:hover:bg-white/10",
     ghost: "bg-transparent text-white ring-1 ring-white/40 hover:bg-surface/10",
 }[variant];
   return (
