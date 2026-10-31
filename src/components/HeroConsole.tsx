@@ -92,9 +92,9 @@ function Bars({ on, n = 4, color, className = "" }: { on: boolean; n?: number; c
 }
 
 const chips = [
-  { label: "Voice AI", cls: "float-slow -left-10 top-48 bg-white text-navy ring-1 ring-line shadow-[0_8px_24px_rgba(0,41,112,0.18)]" },
-  { label: "Meta Ads", cls: "float-slower -right-4 -top-4 bg-navy text-white shadow-xl" },
-  { label: "RCS", cls: "float-slow -right-6 -bottom-4 bg-white text-navy ring-1 ring-line shadow-[0_8px_24px_rgba(0,41,112,0.18)]" },
+  { label: "Voice AI", cls: "lg float-slow -left-10 top-48 text-navy" },
+  { label: "Meta Ads", cls: "lg lg-navy float-slower -right-4 -top-4" },
+  { label: "RCS", cls: "lg float-slow -right-6 -bottom-4 text-navy" },
 ];
 
 export function HeroConsole() {
@@ -330,12 +330,12 @@ export function HeroConsole() {
 
       {/* Phones: floating chips would overlap the card, so show them as a tidy static row instead. */}
       <ul className="mt-4 flex flex-wrap justify-center gap-2 sm:hidden" aria-hidden="true">
-        <li className={`inline-flex items-center gap-2 rounded-full bg-navy px-3 py-1.5 text-xs font-semibold text-white transition ${voice ? "ring-2 ring-pi ring-offset-2" : ""}`}>
+        <li className={`lg lg-navy lg-flat-sm inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition ${voice ? "ring-2 ring-pi ring-offset-2" : ""}`}>
           <Bars on={voice && !!speaker} n={4} color="#00BAF2" />
           <span lang="hi">हिन्दी</span> · English
         </li>
         {chips.map((c) => (
-          <li key={c.label} className={`rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-navy ring-1 transition ${c.label === s.channel ? "ring-2 ring-pi" : "ring-line"}`}>{c.label}</li>
+          <li key={c.label} className={`lg lg-flat-sm rounded-full px-3 py-1.5 text-xs font-semibold text-navy transition ${c.label === s.channel ? "ring-2 ring-pi" : ""}`}>{c.label}</li>
         ))}
       </ul>
       {chips.map((c) => (
@@ -344,7 +344,7 @@ export function HeroConsole() {
         </span>
       ))}
       {/* Voice-flavoured chip in the bottom-left corner: waveform pulses while a voice scene is live. */}
-      <span className={`float-slower absolute -left-12 -bottom-3 hidden items-center gap-2 rounded-full bg-navy px-3 py-1.5 text-xs font-semibold text-white shadow-xl transition-all duration-500 sm:inline-flex ${voice ? "chip-on" : ""}`}>
+      <span className={`lg lg-navy float-slower absolute -left-12 -bottom-3 hidden items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-500 sm:inline-flex ${voice ? "chip-on" : ""}`}>
         <Bars on={voice && !!speaker} n={5} color="#00BAF2" />
         <span lang="hi">हिन्दी</span> · English
       </span>

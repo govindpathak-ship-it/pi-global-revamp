@@ -45,8 +45,8 @@ export default function Home() {
               </h1>
               <p data-reveal style={{ ["--d" as string]: "160ms" }} className="mt-5 max-w-xl text-[17px] leading-relaxed text-body sm:mt-7 sm:text-xl">{hero.sub}</p>
               <div data-reveal style={{ ["--d" as string]: "240ms" }} className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
-                <ContactButton className="min-h-12 !px-7 !py-4 !text-base">Book a demo</ContactButton>
-                <a href="#agents" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-base font-semibold text-navy ring-1 ring-navy transition hover:bg-navy hover:text-white">
+                <ContactButton className="lg-press min-h-12 !px-7 !py-4 !text-base">Book a demo</ContactButton>
+                <a href="#agents" className="lg lg-press inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-base font-semibold text-navy">
                   Meet the agents
                 </a>
               </div>
