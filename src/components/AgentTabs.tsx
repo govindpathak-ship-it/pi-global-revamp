@@ -32,7 +32,7 @@ export function AgentTabs() {
               tabIndex={on ? 0 : -1}
               onClick={(e) => { setActive(i); e.currentTarget.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" }); }}
               style={{ ["--accent" as string]: ag.accent }}
-              className={`relative w-[78%] max-w-[300px] shrink-0 snap-start overflow-hidden rounded-3xl p-5 text-left transition sm:w-auto sm:max-w-none sm:min-w-[220px] sm:flex-1 sm:shrink lg:min-w-0 lg:flex-none ${on ? "bg-navy text-white shadow-[0_18px_40px_-16px_rgba(0,41,112,0.55)]" : "bg-white text-ink ring-1 ring-line hover:ring-navy/40"}`}
+              className={`relative w-[78%] max-w-[300px] shrink-0 snap-start overflow-hidden rounded-3xl p-5 text-left transition sm:w-auto sm:max-w-none sm:min-w-[220px] sm:flex-1 sm:shrink lg:min-w-0 lg:flex-none ${on ? "bg-deep text-white shadow-[0_18px_40px_-16px_rgba(0,41,112,0.55)]" : "bg-surface text-ink ring-1 ring-line hover:ring-navy/40"}`}
             >
               <span className="absolute inset-y-0 left-0 w-1 transition" style={{ background: on ? ag.accent : "transparent" }} />
               <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: on ? ag.accent : "#505050" }}>
@@ -52,7 +52,7 @@ export function AgentTabs() {
         id={`agent-panel-${a.id}`}
         aria-labelledby={`agent-tab-${a.id}`}
         style={{ ["--accent" as string]: a.accent }}
-        className="relative animate-[fadeUp_.5s_ease] overflow-hidden rounded-[2rem] bg-navy p-6 text-white sm:p-10 lg:col-span-8"
+        className="relative animate-[fadeUp_.5s_ease] overflow-hidden rounded-[2rem] bg-deep p-6 text-white sm:p-10 lg:col-span-8"
       >
         <div className="pointer-events-none absolute -top-32 -right-24 h-80 w-80 hidden rounded-full opacity-25 blur-3xl sm:block" style={{ background: a.accent }} />
         <div className="grid-lines pointer-events-none absolute inset-0" style={{ ["--grid" as string]: "rgb(255 255 255 / 0.05)" }} />
@@ -64,7 +64,7 @@ export function AgentTabs() {
           <ol className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-0">
             {a.flow.map((f, i) => (
               <li key={f} className="flex items-center sm:flex-1">
-                <span className="flex w-full items-center gap-3 rounded-2xl bg-white/[0.06] px-4 py-3 ring-1 ring-white/10">
+                <span className="flex w-full items-center gap-3 rounded-2xl bg-surface/[0.06] px-4 py-3 ring-1 ring-white/10">
                   <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full text-xs font-bold text-ink" style={{ background: a.accent }}>{i + 1}</span>
                   <span className="text-sm font-semibold">{f}</span>
                 </span>
@@ -89,7 +89,7 @@ export function AgentTabs() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/65">Where it runs</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {a.channels.map((c) => (
-                  <li key={c} className="rounded-full bg-white/[0.06] px-3.5 py-1.5 text-sm text-white/85 ring-1 ring-white/12">{c}</li>
+                  <li key={c} className="rounded-full bg-surface/[0.06] px-3.5 py-1.5 text-sm text-white/85 ring-1 ring-white/12">{c}</li>
                 ))}
               </ul>
               <a href="#contact" className="mt-6 inline-flex min-h-11 items-center gap-2 py-2 text-[15px] font-semibold sm:text-sm" style={{ color: a.accent }}>

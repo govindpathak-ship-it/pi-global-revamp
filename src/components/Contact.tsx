@@ -29,11 +29,11 @@ export function ContactButton({
   const { open } = useContext(Ctx);
   // Paytm-style pill buttons (paytm.com: navy #002970 pills, 16px/600, hover inverts to white)
   const styles = {
-    primary: "bg-navy text-white ring-1 ring-navy hover:bg-white hover:text-navy",
-    cyan: "bg-pi text-navy hover:bg-white",
-    outline: "bg-white text-navy ring-1 ring-navy hover:bg-navy hover:text-white",
-    light: "bg-white text-navy hover:bg-ice",
-    ghost: "bg-transparent text-white ring-1 ring-white/40 hover:bg-white/10",
+    primary: "bg-deep text-white ring-1 ring-navy hover:bg-surface hover:text-navy",
+    cyan: "on-pi bg-pi text-navy hover:bg-white",
+    outline: "bg-surface text-navy ring-1 ring-navy hover:bg-deep hover:text-white",
+    light: "bg-surface text-navy hover:bg-ice",
+    ghost: "bg-transparent text-white ring-1 ring-white/40 hover:bg-surface/10",
 }[variant];
   return (
     <button
@@ -87,19 +87,19 @@ function ContactModal({ onClose }: { onClose: () => void }) {
     setSent(true);
   }
 
-  const field = "w-full rounded-xl border border-line bg-mist px-4 py-3 text-base text-ink placeholder:text-muted sm:text-sm placeholder:text-muted outline-none transition focus:border-pi focus:bg-white focus:ring-4 focus:ring-pi/20";
+  const field = "w-full rounded-xl border border-line bg-mist px-4 py-3 text-base text-ink placeholder:text-muted sm:text-sm placeholder:text-muted outline-none transition focus:border-pi focus:bg-surface focus:ring-4 focus:ring-pi/20";
 
   return (
     <div className="fixed inset-0 z-[100] flex items-end justify-center p-0 sm:items-center sm:p-6">
-      <div className="absolute inset-0 bg-navy/70 sm:bg-navy/60 sm:backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
+      <div className="absolute inset-0 bg-deep/70 sm:bg-deep/60 sm:backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-title"
-        className="relative max-h-[92dvh] w-full max-w-lg overflow-y-auto overscroll-contain rounded-t-3xl bg-white shadow-2xl sm:rounded-3xl"
+        className="relative max-h-[92dvh] w-full max-w-lg overflow-y-auto overscroll-contain rounded-t-3xl bg-surface shadow-2xl sm:rounded-3xl"
       >
-        <div className="h-1.5 w-full bg-gradient-to-r from-pi to-navy" />
+        <div className="h-1.5 w-full bg-gradient-to-r from-pi to-deep" />
         <div className="p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:p-8">
           <div className="flex items-start justify-between gap-4">
             <div>
@@ -133,7 +133,7 @@ function ContactModal({ onClose }: { onClose: () => void }) {
                   {formIndustries.map((r) => <option key={r}>{r}</option>)}
                 </select>
               </label>
-              <button type="submit" className="col-span-full mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-navy px-5 py-3.5 text-base font-semibold text-white transition hover:bg-navy-2">
+              <button type="submit" className="col-span-full mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-deep px-5 py-3.5 text-base font-semibold text-white transition hover:bg-navy-2">
                 Talk to us <ArrowRight />
               </button>
               <p className="col-span-full text-center text-xs text-muted">We’ll only use this to get in touch about Pi Agents.</p>

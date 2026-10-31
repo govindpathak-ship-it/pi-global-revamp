@@ -179,7 +179,7 @@ export function HeroConsole() {
       <div className="frost sheen-once relative overflow-hidden rounded-[1.75rem] p-4 sm:rounded-[2rem] sm:p-5">
         <div className="flex items-center justify-between">
           <PiLogo className="h-8 w-auto text-ink" />
-          <span className="font-mono inline-flex items-center gap-1.5 rounded-full bg-mint/10 px-2.5 py-1 text-[10px] font-medium uppercase text-[#1e7d46] ring-1 ring-mint/30">
+          <span className="font-mono inline-flex items-center gap-1.5 rounded-full bg-mint/10 px-2.5 py-1 text-[10px] font-medium uppercase text-[#1e7d46] dark:text-[#5fd394] ring-1 ring-mint/30">
             <span className="relative flex h-1.5 w-1.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-mint opacity-75" /><span className="status-dot relative inline-flex h-1.5 w-1.5 rounded-full bg-mint text-mint" /></span>
             Agents online
           </span>
@@ -204,11 +204,11 @@ export function HeroConsole() {
                 Voice AI
               </span>
             ) : (
-              <span className="shrink-0 rounded bg-[#25D366]/15 px-1.5 py-0.5 text-[#128c4b]">WhatsApp</span>
+              <span className="shrink-0 rounded bg-[#25D366]/15 px-1.5 py-0.5 text-[#128c4b] dark:text-[#4ade80]">WhatsApp</span>
             )}
             <span className="min-w-0 truncate">{s.agentName}</span>
             {voice && (
-              <span className={`ml-auto inline-flex shrink-0 items-center gap-1.5 rounded-full px-2 py-0.5 tabular-nums ring-1 ${connected ? "bg-coral/10 text-[#b42318] ring-coral/30" : "bg-white text-muted ring-line"}`}>
+              <span className={`ml-auto inline-flex shrink-0 items-center gap-1.5 rounded-full px-2 py-0.5 tabular-nums ring-1 ${connected ? "bg-coral/10 text-[#b42318] dark:text-[#ff8a80] ring-coral/30" : "bg-surface text-muted ring-line"}`}>
                 <span className="relative flex h-1.5 w-1.5">
                   {connected && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-coral opacity-75" />}
                   <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${connected ? "bg-coral" : "bg-muted"}`} />
@@ -222,8 +222,8 @@ export function HeroConsole() {
             {voice ? (
               <div className="flex h-full flex-col">
                 {/* Call bar: participants + live waveform */}
-                <div className="mt-2 flex items-center gap-2 rounded-xl bg-white px-2.5 py-2 ring-1 ring-line/60">
-                  <span className={`relative grid h-8 w-8 shrink-0 place-items-center rounded-full bg-navy text-[11px] font-bold text-white transition ${speaker === "agent" ? "speak-ring" : ""}`} style={{ ["--ring" as string]: "#00BAF2" }}>Pi</span>
+                <div className="mt-2 flex items-center gap-2 rounded-xl bg-surface px-2.5 py-2 ring-1 ring-line/60">
+                  <span className={`relative grid h-8 w-8 shrink-0 place-items-center rounded-full bg-deep text-[11px] font-bold text-white transition ${speaker === "agent" ? "speak-ring" : ""}`} style={{ ["--ring" as string]: "#00BAF2" }}>Pi</span>
                   <span className="hidden w-[92px] shrink-0 flex-col leading-tight min-[400px]:flex">
                     <span className="text-[11px] font-semibold text-ink">Pi Agent</span>
                     <span className="truncate text-[10px] text-muted">{s.call?.direction} · {s.call?.language}</span>
@@ -250,7 +250,7 @@ export function HeroConsole() {
                     return (
                       <div key={`${scen}-${i}`} className="msg-in shrink-0">
                         <p className={`flex gap-2 text-[14px] leading-snug sm:text-[13px] ${live ? "text-ink" : "text-body"}`}>
-                          <span className={`mt-[3px] inline-flex h-4 shrink-0 items-center gap-1 rounded px-1 text-[9px] font-bold uppercase tracking-wider ${m.from === "agent" ? "bg-pi/15 text-[#006a9e]" : "bg-navy/10 text-navy"}`}>
+                          <span className={`mt-[3px] inline-flex h-4 shrink-0 items-center gap-1 rounded px-1 text-[9px] font-bold uppercase tracking-wider ${m.from === "agent" ? "bg-pi/15 text-[#006a9e] dark:text-[#62d2f6]" : "bg-deep/10 text-navy"}`}>
                             {m.from === "agent" ? "Pi" : "Caller"}
                             {live && <Bars on n={3} color="currentColor" className="!h-2" />}
                           </span>
@@ -269,16 +269,16 @@ export function HeroConsole() {
                 {shown.map((m, i) => (
                   <div key={`${scen}-${i}`} className="msg-in shrink-0">
                     {m.from === "agent" ? (
-                      <p className="max-w-[88%] rounded-2xl rounded-tl-sm bg-white px-3.5 py-2.5 text-[14px] sm:max-w-[85%] sm:text-[13px] leading-snug text-ink shadow-sm ring-1 ring-line/60">{m.text}</p>
+                      <p className="max-w-[88%] rounded-2xl rounded-tl-sm bg-surface px-3.5 py-2.5 text-[14px] sm:max-w-[85%] sm:text-[13px] leading-snug text-ink shadow-sm ring-1 ring-line/60">{m.text}</p>
                     ) : (
-                      <p className="ml-auto w-fit max-w-[80%] rounded-2xl rounded-tr-sm bg-pi px-3.5 py-2.5 text-[14px] sm:max-w-[75%] sm:text-[13px] font-semibold leading-snug text-navy">{m.text}</p>
+                      <p className="ml-auto w-fit max-w-[80%] on-pi rounded-2xl rounded-tr-sm bg-pi px-3.5 py-2.5 text-[14px] sm:max-w-[75%] sm:text-[13px] font-semibold leading-snug text-navy">{m.text}</p>
                     )}
                   </div>
                 ))}
                 {typing && (
                   <div key={`t-${scen}-${count}`} className="msg-in shrink-0">
-                    <div className="typing flex w-14 items-center justify-center gap-1 rounded-2xl rounded-tl-sm bg-white px-3 py-3 ring-1 ring-line/60">
-                      <span className="h-1.5 w-1.5 rounded-full bg-navy" /><span className="h-1.5 w-1.5 rounded-full bg-navy" /><span className="h-1.5 w-1.5 rounded-full bg-navy" />
+                    <div className="typing flex w-14 items-center justify-center gap-1 rounded-2xl rounded-tl-sm bg-surface px-3 py-3 ring-1 ring-line/60">
+                      <span className="h-1.5 w-1.5 rounded-full bg-deep" /><span className="h-1.5 w-1.5 rounded-full bg-deep" /><span className="h-1.5 w-1.5 rounded-full bg-deep" />
                     </div>
                   </div>
                 )}
@@ -294,7 +294,7 @@ export function HeroConsole() {
             const n = active ? lit : 0;
             return (
               <li key={a.id} data-active={active || undefined}
-                className={`agent-card rounded-2xl bg-white p-3 ring-1 sm:p-3.5 transition duration-500 ${active ? "ring-[var(--accent)] shadow-[0_10px_30px_-12px_rgba(0,41,112,0.35)]" : "ring-line opacity-70"}`}
+                className={`agent-card rounded-2xl bg-surface p-3 ring-1 sm:p-3.5 transition duration-500 ${active ? "ring-[var(--accent)] shadow-[0_10px_30px_-12px_rgba(0,41,112,0.35)]" : "ring-line opacity-70"}`}
                 style={{ ["--accent" as string]: accent[a.id] }}>
                 <div className="flex items-center gap-2 text-[14px] font-semibold text-ink sm:text-[13px]">
                   <span className="relative flex h-2 w-2">

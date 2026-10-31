@@ -14,7 +14,7 @@ import { footerLinks, hero, khimjiCase, logos, outcomes, paytmCase, segments, so
 
 function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
   return (
-    <p className={`font-mono inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] ring-1 ${dark ? "bg-white/10 text-aqua ring-white/20" : "bg-ice text-navy ring-pi/30"}`}>
+    <p className={`font-mono inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] ring-1 ${dark ? "bg-surface/10 text-aqua ring-white/20" : "bg-ice text-navy ring-pi/30"}`}>
       <span className="status-dot h-1.5 w-1.5 rounded-full bg-current" />
       {children}
     </p>
@@ -28,8 +28,8 @@ export default function Home() {
       <Header />
       <main id="main">
         {/* HERO */}
-        <section id="top" className="relative isolate overflow-hidden bg-gradient-to-b from-ice-2 via-white to-white pt-24 pb-16 text-ink sm:pt-40 sm:pb-24 lg:pb-32">
-          <Pixels palette={["#00baf2", "#96d8ee", "#e0f5fd", "#85eefc"]} maxOpacity={0.3} className="hidden opacity-60 sm:block [mask-image:radial-gradient(ellipse_at_75%_25%,#000_5%,transparent_65%)]" />
+        <section id="top" className="relative isolate overflow-hidden bg-gradient-to-b from-ice-2 via-surface to-surface pt-24 pb-16 text-ink sm:pt-40 sm:pb-24 lg:pb-32">
+          <Pixels palette={["#00baf2", "#96d8ee", "#e0f5fd", "#85eefc"]} maxOpacity={0.3} className="hidden opacity-60 dark:opacity-15 sm:block [mask-image:radial-gradient(ellipse_at_75%_25%,#000_5%,transparent_65%)]" />
           <div className="grid-lines absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,#000,transparent)]" aria-hidden="true" />
           <div className="absolute -top-40 left-1/2 -z-10 hidden h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-pi/20 blur-[140px] sm:block" aria-hidden="true" />
           {/* Phones: same soft glow from a plain gradient — a 140px blur is very costly on mobile GPUs */}
@@ -83,13 +83,13 @@ export default function Home() {
             <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {outcomes.map((o, i) => (
                 <li key={o.title} data-reveal style={{ ["--d" as string]: `${i * 60}ms` }}>
-                  <a href="#agents" className="group relative grid h-full grid-cols-[auto_1fr] items-start gap-x-4 overflow-hidden rounded-3xl bg-white p-5 sm:flex sm:flex-col sm:p-7 ring-1 ring-line/70 shadow-[0_4px_20px_rgba(0,41,112,0.06)] soft-lift">
+                  <a href="#agents" className="group relative grid h-full grid-cols-[auto_1fr] items-start gap-x-4 overflow-hidden rounded-3xl bg-surface p-5 sm:flex sm:flex-col sm:p-7 ring-1 ring-line/70 shadow-[0_4px_20px_rgba(0,41,112,0.06)] soft-lift">
                     <span className="row-span-2 grid h-12 w-12 place-items-center rounded-2xl bg-ice-2 ring-1 ring-ice transition group-hover:bg-ice sm:h-14 sm:w-14">
                       <img loading="lazy" decoding="async" src={asset(`/images/icons/${o.icon}`)} alt="" className="h-8 w-8" />
                     </span>
                     <h3 className="font-display text-lg font-semibold text-ink sm:mt-6 sm:text-xl">{o.title}</h3>
                     <p className="mt-1 flex-1 text-[15px] leading-relaxed text-body sm:mt-2">{o.body}</p>
-                    <span className="mt-6 hidden h-9 w-9 items-center justify-center rounded-full bg-ice sm:inline-flex text-navy transition group-hover:bg-navy group-hover:text-white">
+                    <span className="mt-6 hidden h-9 w-9 items-center justify-center rounded-full bg-ice sm:inline-flex text-navy transition group-hover:bg-deep group-hover:text-white">
                       <ArrowRight />
                     </span>
                   </a>
@@ -100,9 +100,9 @@ export default function Home() {
         </section>
 
         {/* INDUSTRIES */}
-        <section id="industries" className="relative isolate overflow-hidden bg-white py-24 text-ink sm:py-32">
+        <section id="industries" className="relative isolate overflow-hidden bg-surface py-24 text-ink sm:py-32">
           <img loading="lazy" decoding="async" src={asset("/images/industries/bg.webp")} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.06]" />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-white/80 to-white" aria-hidden="true" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-surface via-surface/80 to-surface" aria-hidden="true" />
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div data-reveal className="text-center">
               <Eyebrow>Industries</Eyebrow>
@@ -121,10 +121,10 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <h2 id="trusted" className="text-center text-sm font-semibold uppercase tracking-[0.2em] text-muted">Trusted by leading businesses across India</h2>
             <div className="marquee mt-10 overflow-hidden">
-              <ul className="marquee-track flex w-max items-center gap-16 sm:gap-20">
+              <ul className="marquee-track flex w-max items-center gap-16 dark:bg-mist sm:gap-20">
                 {[...logos, ...logos].map((l, i) => (
                   <li key={i} aria-hidden={i >= logos.length} className="shrink-0">
-                    <img loading="lazy" decoding="async" src={l.src} alt={i < logos.length ? l.alt : ""} className="h-9 max-w-[150px] w-auto object-contain opacity-60 mix-blend-multiply grayscale transition hover:opacity-100 hover:grayscale-0 sm:h-11" />
+                    <img loading="lazy" decoding="async" src={l.src} alt={i < logos.length ? l.alt : ""} className="theme-logo h-9 max-w-[150px] w-auto object-contain opacity-60 mix-blend-multiply grayscale transition hover:opacity-100 hover:grayscale-0 sm:h-11" />
                   </li>
                 ))}
               </ul>
@@ -133,7 +133,7 @@ export default function Home() {
         </section>
 
         {/* AGENTS */}
-        <section id="agents" className="bg-white py-16 sm:py-32">
+        <section id="agents" className="bg-surface py-16 sm:py-32">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div data-reveal className="max-w-3xl">
               <Eyebrow>AI Agents</Eyebrow>
@@ -160,9 +160,9 @@ export default function Home() {
             </div>
             <ul className="mt-14 grid gap-5 lg:grid-cols-3">
               {segments.map((s, i) => (
-                <li key={s.title} data-reveal style={{ ["--d" as string]: `${i * 90}ms` }} className="group relative isolate flex min-h-[280px] flex-col overflow-hidden rounded-[2rem] bg-navy p-6 text-white sm:p-8 lg:min-h-[380px] text-white">
+                <li key={s.title} data-reveal style={{ ["--d" as string]: `${i * 90}ms` }} className="group relative isolate flex min-h-[280px] flex-col overflow-hidden rounded-[2rem] bg-deep p-6 text-white sm:p-8 lg:min-h-[380px] text-white">
                   <img loading="lazy" decoding="async" src={asset("/images/segments-bg.webp")} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-70" style={{ objectPosition: ["20% 30%", "60% 50%", "90% 80%"][i] }} />
-                  <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy via-navy/85 to-navy/30" />
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-t from-deep via-deep/85 to-deep/30" />
                   <span className="font-display text-sm font-semibold text-white/70">0{i + 1}</span>
                   <div className="mt-auto">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-aqua">{s.kicker}</p>
@@ -176,7 +176,7 @@ export default function Home() {
         </section>
 
         {/* WHY PAYTM */}
-        <section id="why-paytm" className="relative isolate overflow-hidden bg-gradient-to-b from-ice-2 to-white py-24 text-ink sm:py-32">
+        <section id="why-paytm" className="relative isolate overflow-hidden bg-gradient-to-b from-ice-2 to-surface py-24 text-ink sm:py-32">
           <div className="grid-lines absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_15%_0%,#000,transparent_65%)]" aria-hidden="true" />
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div data-reveal className="max-w-3xl">
@@ -186,7 +186,7 @@ export default function Home() {
               </h2>
             </div>
             <div className="mt-14 grid gap-5 lg:grid-cols-12">
-              <div data-reveal className="soft-lift relative overflow-hidden rounded-[2rem] bg-pi p-6 text-navy shadow-[0_24px_60px_-28px_rgba(0,147,214,0.6)] sm:p-10 lg:col-span-7 lg:row-span-2">
+              <div data-reveal className="soft-lift relative overflow-hidden on-pi rounded-[2rem] bg-pi p-6 text-navy shadow-[0_24px_60px_-28px_rgba(0,147,214,0.6)] sm:p-10 lg:col-span-7 lg:row-span-2">
                 <Pixels palette={["#ffffff", "#85eefc", "#002970"]} cols={14} rows={10} size={48} density={0.25} maxOpacity={0.25} className="opacity-60 [mask-image:linear-gradient(to_left,#000,transparent)]" />
                 <div className="relative flex h-full flex-col">
                   <p className="font-mono inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-navy"><Bolt className="h-4 w-4" /> AI Agents</p>
@@ -209,15 +209,15 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div data-reveal style={{ ["--d" as string]: "80ms" }} className="soft-lift rounded-[2rem] bg-white p-6 ring-1 ring-line sm:p-8 shadow-[0_4px_20px_rgba(0,41,112,0.06)] lg:col-span-5">
+              <div data-reveal style={{ ["--d" as string]: "80ms" }} className="soft-lift rounded-[2rem] bg-surface p-6 ring-1 ring-line sm:p-8 shadow-[0_4px_20px_rgba(0,41,112,0.06)] lg:col-span-5">
                 <span className="grid h-11 w-11 place-items-center rounded-xl bg-ice text-pi-ink ring-1 ring-pi/30"><Layers /></span>
                 <p className="font-mono mt-6 text-[11px] font-medium uppercase tracking-[0.16em] text-pi-ink">Robust</p>
                 <h3 className="font-display mt-2 text-2xl font-semibold text-ink">Infrastructure — the power behind every message</h3>
                 <p className="mt-3 text-body">Powered by Meta BSP status, Google/AWS partnerships, and our own telecom network, we provide the ultimate CPaaS layer for every conversation.</p>
               </div>
-              <div data-reveal style={{ ["--d" as string]: "160ms" }} className="soft-lift rounded-[2rem] bg-white p-6 ring-1 ring-line sm:p-8 shadow-[0_4px_20px_rgba(0,41,112,0.06)] lg:col-span-5">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-mint/10 text-[#1e7d46] ring-1 ring-mint/30"><Shield /></span>
-                <p className="font-mono mt-6 text-[11px] font-medium uppercase tracking-[0.16em] text-[#1e7d46]">Sovereign</p>
+              <div data-reveal style={{ ["--d" as string]: "160ms" }} className="soft-lift rounded-[2rem] bg-surface p-6 ring-1 ring-line sm:p-8 shadow-[0_4px_20px_rgba(0,41,112,0.06)] lg:col-span-5">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-mint/10 text-[#1e7d46] dark:text-[#5fd394] ring-1 ring-mint/30"><Shield /></span>
+                <p className="font-mono mt-6 text-[11px] font-medium uppercase tracking-[0.16em] text-[#1e7d46] dark:text-[#5fd394]">Sovereign</p>
                 <h3 className="font-display mt-2 text-2xl font-semibold text-ink">Sovereign AI built for India and the Middle East</h3>
                 <p className="mt-3 text-body">DPDP-compliant by design with native Hindi and Arabic support, our AI is custom-built for the regulatory and operational realities of our markets.</p>
                 <ul className="mt-5 flex flex-wrap gap-2 text-sm">
@@ -231,7 +231,7 @@ export default function Home() {
         </section>
 
         {/* CASE STUDIES */}
-        <section id="case-studies" className="bg-white py-16 sm:py-32">
+        <section id="case-studies" className="bg-surface py-16 sm:py-32">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div data-reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
               <div>
@@ -256,16 +256,16 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="flex flex-1 flex-col p-6 sm:p-8">
-                  <img loading="lazy" decoding="async" src={asset("/images/case/logo-paytm.png")} alt="Paytm" className="h-8 w-auto self-start" />
+                  <img loading="lazy" decoding="async" src={asset("/images/case/logo-paytm.png")} alt="Paytm" className="h-8 w-auto self-start dark:[filter:invert(1)_hue-rotate(180deg)]" />
                   <h3 className="font-display mt-5 text-2xl font-semibold text-ink sm:text-3xl">Pi Agents, proven at Paytm scale</h3>
                   <p className="mt-3 leading-relaxed text-body">{paytmCase.body}</p>
                 </div>
               </article>
               {/* Khimji */}
-              <article data-reveal style={{ ["--d" as string]: "100ms" }} className="relative isolate flex min-h-[520px] flex-col overflow-hidden rounded-[2rem] bg-navy text-white sm:min-h-[560px]">
+              <article data-reveal style={{ ["--d" as string]: "100ms" }} className="relative isolate flex min-h-[520px] flex-col overflow-hidden rounded-[2rem] bg-deep text-white sm:min-h-[560px]">
                 <img loading="lazy" decoding="async" src={asset("/images/case/khimji.webp")} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover object-top opacity-80" />
-                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy via-navy/80 to-navy/0" />
-                <div className="m-6 self-start rounded-xl bg-white px-4 py-2.5 sm:m-8">
+                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-deep via-deep/80 to-deep/0" />
+                <div className="m-6 self-start rounded-xl bg-surface px-4 py-2.5 sm:m-8">
                   <img loading="lazy" decoding="async" src={asset("/images/case/logo-khimji.png")} alt="Khimji Jewellers" className="h-6 w-auto" />
                 </div>
                 <div className="mt-auto p-6 sm:p-8">
@@ -287,8 +287,8 @@ export default function Home() {
 
         {/* CTA */}
         <section id="contact" className="px-5 pb-16 sm:pb-24 lg:px-8">
-          <div data-reveal className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-navy px-6 py-12 text-white sm:rounded-[2.5rem] sm:px-14 sm:py-24">
-            <Pixels cols={28} rows={10} density={0.3} maxOpacity={0.45} className="-z-10 opacity-70 [mask-image:linear-gradient(to_left,#000,transparent_70%)]" />
+          <div data-reveal className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-deep px-6 py-12 text-white sm:rounded-[2.5rem] sm:px-14 sm:py-24">
+            <Pixels cols={28} rows={10} density={0.3} maxOpacity={0.45} className="-z-10 opacity-70 dark:opacity-30 [mask-image:linear-gradient(to_left,#000,transparent_70%)]" />
             <div className="grid items-center gap-10 lg:grid-cols-12">
               <div className="lg:col-span-8">
                 <h2 className="font-display text-[clamp(1.75rem,7.6vw,2rem)] font-bold leading-[1.12] text-balance text-white sm:text-[2.5rem] lg:text-5xl">Ready to power-up with Pi?</h2>
@@ -304,7 +304,7 @@ export default function Home() {
       </main>
 
       {/* FOOTER */}
-      <footer className="border-t border-line bg-white text-ink">
+      <footer className="border-t border-line bg-surface text-ink">
         <div className="mx-auto max-w-7xl px-5 py-12 sm:py-16 lg:px-8">
           <div className="flex flex-col justify-between gap-10 md:flex-row md:items-start">
             <div>
@@ -329,7 +329,7 @@ export default function Home() {
             <ul className="flex gap-2">
               {socials.map((s) => (
                 <li key={s.label}>
-                  <a href={s.href} target="_blank" rel="noopener" aria-label={s.label} className="grid h-11 w-11 place-items-center rounded-full bg-ice-2 text-navy ring-1 ring-ice transition hover:bg-navy hover:text-white">
+                  <a href={s.href} target="_blank" rel="noopener" aria-label={s.label} className="grid h-11 w-11 place-items-center rounded-full bg-ice-2 text-navy ring-1 ring-ice transition hover:bg-deep hover:text-white">
                     <Social name={s.label} />
                   </a>
                 </li>
@@ -337,7 +337,7 @@ export default function Home() {
             </ul>
           </div>
         </div>
-        <div aria-hidden="true"><div className="h-2 bg-pi" /><div className="h-2 bg-navy" /></div>
+        <div aria-hidden="true"><div className="h-2 bg-pi" /><div className="h-2 bg-deep" /></div>
       </footer>
     </ContactProvider>
   );
