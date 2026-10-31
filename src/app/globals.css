@@ -366,11 +366,79 @@ body { overflow-x: clip; }
   :root:not([data-theme]) .frost { box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08), 0 0 0 1px rgb(0 186 242 / 0.14), inset 0 1px 0 rgb(255 255 255 / 0.06), 0 0 80px -20px rgb(0 186 242 / 0.14), 0 40px 90px -30px rgb(0 0 0 / 0.85); }
   :root:not([data-theme]) .chip-on { box-shadow: 0 0 0 6px rgb(0 186 242 / 0.1), 0 10px 24px -8px rgb(0 0 0 / 0.6); }
 }
-/* Brief, subtle colour cross-fade only while switching themes (not on load). */
-.theme-anim, .theme-anim *, .theme-anim *::before, .theme-anim *::after {
-  transition: background-color .35s ease, color .35s ease, border-color .35s ease, fill .35s ease !important;
+/* ── Theme switch ──────────────────────────────────────────────
+   1) View Transitions: the new theme grows from the toggle as a circle (compositor clip),
+      with a feathered glass ring (a scaled snapshot, transform-only) riding the edge.
+   2) Fallback: one synchronized cross-fade of every themed property on the same clock.
+   Nothing here runs on load: the classes are only added on click. */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+.vt-reveal::view-transition-old(root) { z-index: 1; }
+.vt-reveal::view-transition-new(root) {
+  z-index: 2;
+  animation: vtReveal 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-@media (prefers-reduced-motion: reduce) { .theme-anim, .theme-anim * { transition: none !important; } }
+@keyframes vtReveal {
+  from { clip-path: circle(0px at var(--vt-x) var(--vt-y)); }
+  to { clip-path: circle(var(--vt-r) at var(--vt-x) var(--vt-y)); }
+}
+.vt-ring {
+  /* Lives inside the new (live) layer, so it is clipped by the reveal and reads as a feathered,
+     light-catching inner rim on the expanding edge. Transform + opacity only. */
+  position: fixed; width: 120px; height: 120px; pointer-events: none; z-index: 2147483647;
+  border-radius: 50%; will-change: transform, opacity;
+  background: radial-gradient(circle closest-side, transparent 78%, rgb(var(--ring-c) / 0.06) 88%, rgb(var(--ring-c) / 0.22) 96%, rgb(var(--ring-c) / 0.45) 99.2%, transparent 100%);
+  animation: vtRing 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.vt-to-dark .vt-ring { --ring-c: 110 210 255; }
+.vt-to-light .vt-ring { --ring-c: 0 120 220; }
+@keyframes vtRing {
+  0% { transform: scale(0); opacity: 1; }
+  60% { opacity: 0.9; }
+  100% { transform: scale(var(--vt-s)); opacity: 0; }
+}
+.vt-fade::view-transition-old(root) { animation: vtOut 200ms ease both; }
+.vt-fade::view-transition-new(root) { animation: vtIn 200ms ease both; }
+@keyframes vtOut { to { opacity: 0; } }
+@keyframes vtIn { from { opacity: 0; } }
+/* Keep the live layer cheap and in sync while it is revealed: park the decorative loops and
+   stop per-element colour transitions (the reveal itself is the transition). */
+.vt-busy *, .vt-busy *::before, .vt-busy *::after { transition-duration: 0s !important; transition-delay: 0s !important; }
+.vt-busy .tt-i .tt-rot, .vt-busy .tt-i .tt-core, .vt-busy .tt-i .tt-bite { transition-duration: 0.6s !important; }
+.vt-busy .tt-i .tt-rays { transition-duration: 0.5s !important; }
+:root[data-theme="dark"].vt-busy .tt-i .tt-rays { transition-delay: 0.12s !important; }
+.vt-busy .pixel, .vt-busy .marquee-track, .vt-busy .float-slow, .vt-busy .float-slower,
+.vt-busy .eq-on span, .vt-busy .wave-on span, .vt-busy .speak-ring { animation-play-state: paused !important; }
+
+/* Fallback cross-fade: same duration + easing everywhere, incl. Tailwind's registered gradient stops. */
+.theme-anim, .theme-anim *, .theme-anim *::before, .theme-anim *::after {
+  transition-property: background-color, color, border-color, outline-color, text-decoration-color, fill, stroke, box-shadow, opacity, filter, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to !important;
+  transition-duration: var(--theme-fade, 480ms) !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-delay: 0s !important;
+}
+
+/* Toggle: one glyph that morphs moon (light) ↔ sun (dark), plus a glass press squeeze. */
+.tt-i .tt-rot, .tt-i .tt-core, .tt-i .tt-rays { transform-box: view-box; transform-origin: 12px 12px; }
+.tt-i .tt-rot { transform: rotate(-25deg); transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1); }
+.tt-i .tt-core { transform: scale(1); transition: transform 0.55s cubic-bezier(0.34, 1.4, 0.5, 1); }
+.tt-i .tt-bite { transform: translate(0, 0); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.tt-i .tt-rays { transform: scale(0.45) rotate(-40deg); opacity: 0; transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1), opacity 0.2s ease; }
+:root[data-theme="dark"] .tt-i .tt-rot { transform: rotate(90deg); }
+:root[data-theme="dark"] .tt-i .tt-core { transform: scale(0.52); }
+:root[data-theme="dark"] .tt-i .tt-bite { transform: translate(8px, -8px); }
+:root[data-theme="dark"] .tt-i .tt-rays { transform: none; opacity: 1; transition: transform 0.55s cubic-bezier(0.34, 1.5, 0.5, 1) 0.12s, opacity 0.3s ease 0.12s; }
+.theme-anim .tt-i .tt-rot, .theme-anim .tt-i .tt-core, .theme-anim .tt-i .tt-bite, .theme-anim .tt-i .tt-rays { transition-property: transform, opacity !important; }
+.tt-squeeze { animation: ttSqueeze 0.5s cubic-bezier(0.3, 1.4, 0.5, 1); }
+@keyframes ttSqueeze {
+  0% { transform: scale(1); }
+  22% { transform: scale(0.86, 0.9); }
+  55% { transform: scale(1.07, 1.04); }
+  100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tt-i .tt-rot, .tt-i .tt-core, .tt-i .tt-bite, .tt-i .tt-rays { transition-duration: 0.01s !important; transition-delay: 0s !important; }
+  .tt-squeeze { animation: none; }
+}
 
 /* ── Mobile menu button: lines morph into an X ── */
 .menu-lines { position: relative; display: block; width: 20px; height: 14px; }
